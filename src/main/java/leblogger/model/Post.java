@@ -9,13 +9,8 @@ import javax.persistence.*;
 @Table(name = "post")
 public class Post {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false)
     private int id;
-    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "text", nullable = false)
     private String text;
 
     public Post(String name, String text) {
@@ -23,10 +18,17 @@ public class Post {
         this.text = text;
     }
 
+    public Post(){
+
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
+
+    @Id
+    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
@@ -35,6 +37,7 @@ public class Post {
         this.name = name;
     }
 
+    @Column(name = "name", nullable = false,length = 50)
     public String getName() {
         return name;
     }
@@ -43,6 +46,7 @@ public class Post {
         this.text = text;
     }
 
+    @Column(name = "text", nullable = false)
     public String getText() {
         return text;
     }

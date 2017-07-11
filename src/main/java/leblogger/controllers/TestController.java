@@ -1,6 +1,6 @@
 package leblogger.controllers;
 
-import leblogger.dal.PostRepository;
+import leblogger.dal.IPostRepository;
 import leblogger.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
     @Autowired
-    PostRepository postIRepository;
+    IPostRepository postIRepository;
 
     @RequestMapping(value = "/test")
     public String test(){
