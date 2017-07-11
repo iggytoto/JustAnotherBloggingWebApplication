@@ -78,16 +78,16 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <form action="/testController/test" method="post">
+                <form action="/testController/addPost" method="post">
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" id="recipient-name" name="name1">
                     </div>
 
                     <div class="form-group">
                         <label for="message-text" class="control-label">Text:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="message-text" name="text1"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
