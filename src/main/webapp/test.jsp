@@ -78,11 +78,13 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <form action="/" method="post">
+                <form action="/testController/test" method="post">
+
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
                         <input type="text" class="form-control" id="recipient-name">
                     </div>
+
                     <div class="form-group">
                         <label for="message-text" class="control-label">Text:</label>
                         <textarea class="form-control" id="message-text"></textarea>
