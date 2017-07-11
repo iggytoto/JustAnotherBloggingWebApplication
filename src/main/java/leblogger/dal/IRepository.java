@@ -1,4 +1,4 @@
-package leblogger.dal.interfaces;
+package leblogger.dal;
 
 import java.util.List;
 

@@ -1,13 +1,9 @@
-package leblogger.dal.dao;
+package leblogger.dal;
 
-import leblogger.dal.Hibernate.HibernateSessionFactory;
-import leblogger.dal.interfaces.IRepository;
-import leblogger.dal.model.Post;
+import leblogger.model.Post;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,12 +11,11 @@ import java.util.List;
 /**
  * Created by Iggytoto on 11.07.2017.
  */
-@Component
+@Repository
 public class PostRepository implements IRepository<Post> {
-    private static final String READALL_SQL = "from post";
 
     @Autowired
-    private HibernateSessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public void create(Post obj) {
         saveOrUpdate(obj);
@@ -28,12 +23,11 @@ public class PostRepository implements IRepository<Post> {
 
     public Post read(int id) {
         Session s = getSession();
-        s.beginTransaction();
-        return (Post) s.load(Post.class, id);
+        return (Post) s.get(Post.class, id);
     }
 
     public List<Post> readAll() {
-        Session s =getSession();
+        Session s = getSession();
         return (List<Post>) s.createCriteria(Post.class).list();
     }
 
@@ -43,20 +37,16 @@ public class PostRepository implements IRepository<Post> {
 
     public void delete(int id) throws Exception {
         Session s = getSession();
-        s.beginTransaction();
-        Post p = (Post) s.load(Post.class, id);
+        Post p = (Post) s.get(Post.class, id);
         s.delete(p);
-        s.flush();
     }
 
     private void saveOrUpdate(Post obj) {
         Session s = getSession();
-        s.beginTransaction();
         s.saveOrUpdate(obj);
-        s.flush();
     }
 
     private Session getSession(){
-        return sessionFactory.getSessionFactory().openSession();
+        return sessionFactory.getCurrentSession();
     }
 }
