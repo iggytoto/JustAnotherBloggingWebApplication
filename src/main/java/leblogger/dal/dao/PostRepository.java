@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Component
 public class PostRepository implements IRepository<Post> {
-    private static final String READ_SQL = "from post where id=?";
+/*    private static final String READ_SQL = "from post where id=?";
     private static final String READALL_SQL = "from post";
 
     public void create(Post obj) {
@@ -44,7 +44,7 @@ public class PostRepository implements IRepository<Post> {
         s.beginTransaction();
         s.delete(obj);
 
-        
+
         s.getTransaction().commit();
     }
 
@@ -53,5 +53,5 @@ public class PostRepository implements IRepository<Post> {
         s.beginTransaction();
         s.saveOrUpdate(obj);
         s.getTransaction().commit();
-    }
+    }*/
 }

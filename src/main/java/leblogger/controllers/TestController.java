@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/testController")
 public class TestController {
 
+/*
     @Autowired
     PostRepository postIRepository;
 
@@ -23,5 +24,6 @@ public class TestController {
         System.out.println(postIRepository.readAll().size());
         return "test";
     }
+*/
 
 }
