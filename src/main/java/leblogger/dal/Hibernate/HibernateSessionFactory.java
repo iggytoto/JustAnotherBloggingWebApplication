@@ -4,10 +4,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Iggytoto on 11.07.2017.
  */
+@Component
 public class HibernateSessionFactory {
     private static SessionFactory sessionFactory = buildSessionFactory();
 
