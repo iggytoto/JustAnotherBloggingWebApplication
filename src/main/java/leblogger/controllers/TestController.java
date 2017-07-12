@@ -1,6 +1,6 @@
 package leblogger.controllers;
 
-import leblogger.dal.dao.PostRepository;
+//import leblogger.dal.dao.PostRepository;
 import leblogger.dal.interfaces.IRepository;
 import leblogger.dal.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
