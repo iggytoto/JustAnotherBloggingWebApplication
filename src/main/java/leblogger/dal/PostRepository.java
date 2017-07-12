@@ -3,6 +3,7 @@ package leblogger.dal;
 import leblogger.model.Post;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,7 @@ public class PostRepository implements IRepository<Post> {
 
     public List<Post> readAll() {
         Session s = getSession();
-        return (List<Post>) s.createCriteria(Post.class).list();
+        return (List<Post>) s.createCriteria(Post.class).addOrder(Order.desc("id")).list();
     }
 
     @Transactional(readOnly = false)
