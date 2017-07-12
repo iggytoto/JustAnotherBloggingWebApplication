@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/testController")
 public class TestController {
-    @Autowired
-    Logger logger;
-
     @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
     public String test(){
 
