@@ -19,7 +19,7 @@ public class TestController {
     Logger logger;
 
     @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
-    public String test(@PathVariable("id")int id){
+    public String test(){
         logger.log(Priority.INFO,"Test log");
         return "test";
     }
