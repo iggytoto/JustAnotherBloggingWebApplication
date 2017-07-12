@@ -20,15 +20,4 @@ public class TestController {
         return "test";
     }
 
-//    @RequestMapping(value = "/addPost", method = RequestMethod.POST)
-//    public String addPost(@ModelAttribute("userForm") Post post, ModelMap model){ // нужен объект в который я буду принимать пост
-
-//        model.addAttribute("id", "1");
-//        model.addAttribute("name", "NameName");
-//        model.addAttribute("text", "TextText");
-
-//        return "result";
-//    }
-
-
 }

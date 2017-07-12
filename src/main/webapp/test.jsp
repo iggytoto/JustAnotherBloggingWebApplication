@@ -36,7 +36,6 @@
                 class="btn btn-lg btn-primary btn-block"
                 data-toggle="modal"
                 data-target=".bs-example-modal-sm"
-                <%--style="width: 80%; margin: auto;"--%>
         >Submit new Post</button>
 
     </div>

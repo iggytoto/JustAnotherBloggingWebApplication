@@ -18,14 +18,7 @@ import java.util.ArrayList;
 @RequestMapping(value = "/restController")
 public class PostController {
 
-    //BlogService blogService;
-
     ArrayList<Post> posts = null;
-
-/*    @Autowired
-    public void setBlogService(BlogService blogService) {
-        this.blogService = blogService;
-    }*/
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView sayHello(ModelAndView mav){
@@ -37,7 +30,6 @@ public class PostController {
         posts.add(post0);
         posts.add(post1);
         posts.add(post2);
-        //posts=blogService.getAllPosts();
 
         mav.addObject("posts", posts);
         mav.setViewName("test");
