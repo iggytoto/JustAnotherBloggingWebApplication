@@ -30,7 +30,8 @@ public class PostController {
     public ModelAndView viewPosts(ModelAndView mav) {
         posts = blogService.getAllPosts();
         mav.addObject("posts", posts);
-        mav.setViewName("home.jsp");
+        mav.setViewName("test.jsp");
+        System.out.println("hello");
         return mav;
     }
 
