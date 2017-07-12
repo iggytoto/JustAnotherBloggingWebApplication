@@ -2,7 +2,9 @@ package leblogger.dal;
 
 import leblogger.model.Post;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -69,7 +71,7 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
     }
 
     public List<Post> getRange(int from, int to) {
-        if(from <=0 || to <= 0 || from >= to){
+        if (from <= 0 || to <= 0 || from >= to) {
             throw new IllegalArgumentException("From and To parameters should not be negative,zero, equal and From should be less that To.");
         }
 
