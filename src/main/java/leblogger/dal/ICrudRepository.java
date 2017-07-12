@@ -5,9 +5,9 @@ import java.util.List;
 /**
  * Created by Iggytoto on 11.07.2017.
  *
- * Simple generic IRepository interface.
+ * Simple generic ICrudRepository interface.
  */
-public interface IRepository<T> {
+public interface ICrudRepository<T> {
     /**
      * Creates the given T entity.
      * @param obj T entity to create in database.

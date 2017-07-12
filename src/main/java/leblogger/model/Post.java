@@ -18,7 +18,7 @@ public class Post {
         this.text = text;
     }
 
-    public Post(){
+    public Post() {
 
     }
 
@@ -37,7 +37,7 @@ public class Post {
         this.name = name;
     }
 
-    @Column(name = "name", nullable = false,length = 50)
+    @Column(name = "name", nullable = false, length = 50)
     public String getName() {
         return name;
     }
