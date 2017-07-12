@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "post")
 public class Post {
 
-    private int id;
+    private long id;
     private String name;
     private String text;
 
@@ -22,14 +22,14 @@ public class Post {
 
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
 
     @Id
-    @Column(name = "id", unique = true)
-    public int getId() {
+    @GeneratedValue
+    public long getId() {
         return id;
     }
 

@@ -14,19 +14,22 @@ import java.util.List;
  */
 @Repository
 @Transactional(readOnly = true)
-public class PostRepository implements IPostRepository {
+public class PostRepository implements IRepository<Post> {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Transactional(readOnly = false)
-    public void create(Post obj) {
-        saveOrUpdate(obj);
+    public long create(Post obj) {
+        Session s = getSession();
+        long result = (Long) s.save(obj);
+        s.flush();
+        return result;
     }
 
-    public Post read(int id) {
+    public Post read(long id) {
         Session s = getSession();
-        return s.get(Post.class, id);
+        return s.get(Post.class, id); // returning proxy object
     }
 
     public List<Post> readAll() {
@@ -36,22 +39,20 @@ public class PostRepository implements IPostRepository {
 
     @Transactional(readOnly = false)
     public void update(Post obj) throws Exception {
-        saveOrUpdate(obj);
+        Session s = getSession();
+        s.update(obj);
+        s.flush();
     }
 
     @Transactional(readOnly = false)
-    public void delete(int id) throws Exception {
+    public void delete(long id) throws Exception {
         Session s = getSession();
         Post p = (Post) s.get(Post.class, id);
         s.delete(p);
+        s.flush();
     }
 
-    private void saveOrUpdate(Post obj) {
-        Session s = getSession();
-        s.saveOrUpdate(obj);
-    }
-
-    private Session getSession(){
+    private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 }
