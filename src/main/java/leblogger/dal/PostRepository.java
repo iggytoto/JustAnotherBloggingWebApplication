@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Repository
 @Transactional(readOnly = true)
-public class PostRepository implements IRepository<Post> {
+public class PostRepository implements ICrudRepository<Post> , IDbRepository<Post> {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -59,5 +59,13 @@ public class PostRepository implements IRepository<Post> {
 
     private Session getSession() {
         return sessionFactory.getCurrentSession();
+    }
+
+    public int countEntities() {
+        return 0;
+    }
+
+    public List<Post> getRange(int from, int to) {
+        return null;
     }
 }

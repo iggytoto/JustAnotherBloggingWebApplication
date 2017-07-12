@@ -1,6 +1,6 @@
 package leblogger.services;
 
-import leblogger.dal.IRepository;
+import leblogger.dal.ICrudRepository;
 import leblogger.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.ArrayList;
 @Service
 public class BlogServiceImpl implements BlogService{
 
-    IRepository rep;
+    ICrudRepository rep;
 
     @Autowired
-    public void setRep(IRepository rep) {
+    public void setRep(ICrudRepository rep) {
         this.rep = rep;
     }
 
