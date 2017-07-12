@@ -41,6 +41,9 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void addPost(@ModelAttribute Post post) {
+
+        // here be Dragons
+
         blogService.addPost(post);
     }
 }
