@@ -11,15 +11,16 @@ public interface IRepository<T> {
     /**
      * Creates the given T entity.
      * @param obj T entity to create in database.
+     * @return id of entity.
      */
-    void create(T obj);
+    long create(T obj);
 
     /**
      * Reads T entity by given id.
      * @param id given id.
      * @return T entity in case if it exist with current ID, null if not.
      */
-    T read (int id);
+    T read (long id);
 
     /**
      * Reads all T from database.
@@ -39,5 +40,5 @@ public interface IRepository<T> {
      * @param id id of entity to delete.
      * @throws Exception in case something bad happened.
      */
-    void delete(int id) throws Exception;
+    void delete(long id) throws Exception;
 }
