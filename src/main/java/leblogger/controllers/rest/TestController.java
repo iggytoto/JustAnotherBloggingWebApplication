@@ -20,14 +20,8 @@ public class TestController {
     @Autowired
     Logger logger;
 
-    @Autowired
-    IDbRepository<Post> repo;
-
     @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
     public String test(){
-
-        System.out.println(repo.countEntities());
-        System.out.println(repo.getRange(2,4));
 
         return "test";
     }

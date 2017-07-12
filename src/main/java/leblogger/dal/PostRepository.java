@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -44,14 +45,14 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
     }
 
     @Transactional(readOnly = false)
-    public void update(Post obj) throws Exception {
+    public void update(Post obj) throws SQLException {
         Session s = getSession();
         s.update(obj);
         s.flush();
     }
 
     @Transactional(readOnly = false)
-    public void delete(long id) throws Exception {
+    public void delete(long id) throws SQLException {
         Session s = getSession();
         Post p = (Post) s.get(Post.class, id);
         s.delete(p);
@@ -73,6 +74,7 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
         }
 
         Criteria c = getSession().createCriteria(Post.class);
+        c.addOrder(Order.desc("id"));
         c.setFirstResult(from);
         c.setMaxResults(to - from);
         return c.list();
