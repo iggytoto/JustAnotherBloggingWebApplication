@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by evgeny.semenov on 11.07.2017.
  */
 @Service
-public class BlogServiceImpl implements BlogService{
+public class BlogServiceImpl implements BlogService {
 
     IRepository rep;
 
@@ -24,7 +24,7 @@ public class BlogServiceImpl implements BlogService{
         return new ArrayList(rep.readAll());
     }
 
-    public void addPost(Post post){
+    public void addPost(Post post) {
         rep.create(post);
     }
 }

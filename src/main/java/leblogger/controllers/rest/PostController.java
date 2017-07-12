@@ -25,20 +25,32 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView viewPosts(ModelAndView mav){
-        posts=blogService.getAllPosts();
+    public ModelAndView viewPosts(ModelAndView mav) {
+        posts = blogService.getAllPosts();
         mav.addObject("posts", posts);
-        mav.setViewName("test.jsp");
+        mav.setViewName("home.jsp");
 
         return mav;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
-                        @RequestParam(value = "text1", required = false) String text1) {
+                          @RequestParam(value = "text1", required = false) String text1) {
 
-        blogService.addPost(new Post(name1,text1));
+        blogService.addPost(new Post(name1, text1));
 
         return "redirect:/";
     }
+
+    @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
+//    public ModelAndView delPost(@PathVariable int id, ModelAndView mav){
+    public String delPost(@PathVariable int id, ModelAndView mav){
+
+        mav.addObject("test", id);
+        mav.setViewName("home");
+
+//        return mav;
+        return "redirect:/ttt";
+    }
+
 }

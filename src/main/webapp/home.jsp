@@ -14,7 +14,7 @@
 
 </head>
 
-<body style="padding-top: 280px;" >
+<body style="padding-top: 280px;">
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -30,45 +30,55 @@
 
         </div>
 
-    <div>
+        <div>
 
-        <button type="button"
-                class="btn btn-lg btn-primary btn-block"
-                data-toggle="modal"
-                data-target=".bs-example-modal-sm"
-        >Submit new Post</button>
+            <button type="button"
+                    class="btn btn-lg btn-primary btn-block"
+                    data-toggle="modal"
+                    data-target=".bs-example-modal-sm"
+            >Submit new Post
+            </button>
 
-    </div>
+        </div>
 
     </div>
 
 </nav>
 
-    <div class="container" style="width: 700px;">
+<div class="container" style="width: 700px;">
 
-        <c:forEach items="${requestScope.posts}" var="pst">
+    <c:forEach items="${requestScope.posts}" var="pst">
         <p>
-            <div class="panel panel-default">
+        <div class="panel panel-default">
 
-                <div class="panel-heading">
-                        <span>Name : </span> <c:out value="${pst.name}"></c:out>
-                        ,
-                        <span>Date : </span> 07.07.2017
-                </div>
+            <div class="panel-heading">
+                <span>Name : </span> <c:out value="${pst.name}"></c:out>
+                ,
+                <span>Date : </span> 07.07.2017
 
-                <div class="panel-body">
+                <button type="button" class="btn btn-default btn-md" style="float: right;" id="crossClick">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
 
-                    <c:out value="${pst.text}"></c:out>
+                <button type="button" class="btn btn-default btn-md" style="float: right;">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </button>
 
-                </div>
+                <hr style="clear: right; border: 0; margin: 0;">
 
             </div>
+
+            <div class="panel-body">
+
+                <c:out value="${pst.text}"></c:out>
+
+            </div>
+
+        </div>
         </p>
-        </c:forEach>
+    </c:forEach>
 
-
-
-    </div>
+</div>
 
 <%--/container--%>
 
@@ -79,7 +89,8 @@
         <div class="modal-content">
 
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
 
                 <form method="post">
 
@@ -107,5 +118,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/script.js" />"></script>
 </body>
 </html>

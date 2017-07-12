@@ -11,5 +11,6 @@ import java.util.ArrayList;
 @Service
 public interface BlogService {
     ArrayList<Post> getAllPosts();
+
     void addPost(Post post);
 }
