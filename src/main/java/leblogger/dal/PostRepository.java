@@ -1,6 +1,8 @@
 package leblogger.dal;
 
 import leblogger.model.Post;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -19,6 +21,8 @@ public class PostRepository implements IRepository<Post> {
 
     @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    private Logger logger;
 
     @Transactional(readOnly = false)
     public long create(Post obj) {
