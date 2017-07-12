@@ -29,10 +29,7 @@ public class PostController {
         posts=blogService.getAllPosts();
         mav.addObject("posts", posts);
         mav.setViewName("test.jsp");
-        for(Post post:posts){
-            System.out.println(post.getName());
-            System.out.println(post.getText());
-        }
+
         return mav;
     }
 
@@ -43,7 +40,5 @@ public class PostController {
         blogService.addPost(new Post(name1,text1));
 
         return "redirect:/";
-
-        //blogService.addPost(post);
     }
 }

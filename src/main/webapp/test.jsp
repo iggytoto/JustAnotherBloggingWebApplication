@@ -52,8 +52,6 @@
 
                 <div class="panel-heading">
                         <span>Name : </span> <c:out value="${pst.name}"></c:out>
-                        ,
-                        <span>Date : </span> 07.07.2017
                 </div>
 
                 <div class="panel-body">
