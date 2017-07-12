@@ -40,10 +40,13 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addPost(@ModelAttribute Post post) {
-
-        // here be Dragons
+    public ModelAndView addPost(@ModelAttribute("post") Post post, ModelAndView mav) {
 
         blogService.addPost(post);
+
+//        model.addAttribute()
+        mav.setViewName("test.jsp");
+
+        return mav;
     }
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%--
   Created by IntelliJ IDEA.
   User: Iggytoto
@@ -66,8 +67,6 @@
         </p>
         </c:forEach>
 
-
-
     </div>
 
 <%--/container--%>
@@ -81,21 +80,21 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <form action="/blog" method="post">
+                <form:form action="/blog" method="post" modelAttribute="post">
 
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="name1">
+                        <form:label for="recipient-name" class="control-label" path="name">Name:</form:label>
+                        <form:input type="text" class="form-control" id="recipient-name" path="name" />
                     </div>
 
                     <div class="form-group">
-                        <label for="message-text" class="control-label">Text:</label>
-                        <textarea class="form-control" id="message-text" name="text1"></textarea>
+                        <form:label for="message-text" class="control-label" path="text">Text:</form:label>
+                        <form:textarea class="form-control" id="message-text" path="text"></form:textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
 
-                </form>
+                </form:form>
 
             </div>
 
