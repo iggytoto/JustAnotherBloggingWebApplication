@@ -1,6 +1,6 @@
 package leblogger.services;
 
-import leblogger.dal.model.Post;
+import leblogger.model.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

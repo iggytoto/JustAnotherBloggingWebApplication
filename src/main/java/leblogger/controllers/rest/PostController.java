@@ -1,6 +1,6 @@
 package leblogger.controllers.rest;
 
-import leblogger.dal.model.Post;
+import leblogger.model.Post;
 import leblogger.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by Iggytoto on 11.07.2017.
  */
 @RestController
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/blog")
 public class PostController {
 
     BlogService blogService;
@@ -31,7 +31,7 @@ public class PostController {
     public ModelAndView viewPosts(ModelAndView mav){
         posts=blogService.getAllPosts();
         mav.addObject("posts", posts);
-        mav.setViewName("test");
+        mav.setViewName("test.jsp");
         for(Post post:posts){
             System.out.println(post.getName());
             System.out.println(post.getText());

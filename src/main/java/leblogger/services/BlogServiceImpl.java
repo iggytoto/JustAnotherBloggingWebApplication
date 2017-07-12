@@ -1,7 +1,7 @@
 package leblogger.services;
 
-import leblogger.dal.interfaces.IRepository;
-import leblogger.dal.model.Post;
+import leblogger.dal.IRepository;
+import leblogger.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

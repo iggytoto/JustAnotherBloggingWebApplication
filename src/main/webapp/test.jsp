@@ -8,9 +8,99 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>leBlogger</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
-<body>
-    test (ololo)
+
+<body style="padding-top: 280px;" >
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container" style="width: 700px;">
+
+        <div class="jumbotron" style="margin-bottom: 0px;">
+
+            <h1 style="text-align: center;">
+                le Blogger
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            </h1>
+
+        </div>
+
+    <div>
+
+        <button type="button"
+                class="btn btn-lg btn-primary btn-block"
+                data-toggle="modal"
+                data-target=".bs-example-modal-sm"
+                <%--style="width: 80%; margin: auto;"--%>
+        >Submit new Post</button>
+
+    </div>
+
+    </div>
+
+</nav>
+
+    <div class="container" style="width: 700px;">
+
+        <p>
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                        <span>Name : </span> Ivan Ivanov
+                        ,
+                        <span>Date : </span> 07.07.2017
+
+                </div>
+
+                <div class="panel-body">
+                    TextTextText...
+                </div>
+
+            </div>
+
+        </p>
+
+    </div>
+
+<%--/container--%>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+
+    <div class="modal-dialog modal-sm" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <form action="/" method="post">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Name:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Text:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
