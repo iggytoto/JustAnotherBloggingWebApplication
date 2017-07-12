@@ -1,9 +1,6 @@
 package leblogger.controllers.rest;
 
 import leblogger.dal.model.Post;
-import leblogger.services.BlogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Iggytoto on 11.07.2017.
  */
-@Controller
+@RestController
 @RequestMapping(value = "/restController")
 public class PostController {
 
