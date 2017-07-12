@@ -1,5 +1,7 @@
 package leblogger.controllers.rest;
 
+import leblogger.dal.IDbRepository;
+import leblogger.model.Post;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,15 @@ public class TestController {
     @Autowired
     Logger logger;
 
+    @Autowired
+    IDbRepository<Post> repo;
+
     @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
     public String test(){
-        logger.log(Priority.INFO,"Test log");
+
+        System.out.println(repo.countEntities());
+        System.out.println(repo.getRange(2,4));
+
         return "test";
     }
 }
