@@ -29,7 +29,6 @@ public class PostController {
         posts=blogService.getAllPosts();
         mav.addObject("posts", posts);
         mav.setViewName("test.jsp");
-        System.out.println("hello");
         return mav;
     }
 
