@@ -81,7 +81,7 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <form action="/blog" method="post">
+                <form method="post">
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>

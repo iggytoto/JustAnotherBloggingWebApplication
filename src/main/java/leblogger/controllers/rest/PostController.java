@@ -3,10 +3,7 @@ package leblogger.controllers.rest;
 import leblogger.model.Post;
 import leblogger.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ import java.util.ArrayList;
  * Created by Iggytoto on 11.07.2017.
  */
 @RestController
-@RequestMapping(value = "/blog")
+@RequestMapping(value = "/")
 public class PostController {
 
     BlogService blogService;
@@ -40,10 +37,13 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addPost(@ModelAttribute Post post) {
+    public String addPost(@RequestParam(value = "name1", required = false) String name1,
+                        @RequestParam(value = "text1", required = false) String text1) {
 
-        // here be Dragons
+        blogService.addPost(new Post(name1,text1));
 
-        blogService.addPost(post);
+        return "redirect:/";
+
+        //blogService.addPost(post);
     }
 }
