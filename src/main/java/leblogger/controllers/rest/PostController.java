@@ -3,6 +3,7 @@ package leblogger.controllers.rest;
 import leblogger.dal.model.Post;
 import leblogger.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,8 @@ import java.util.ArrayList;
 /**
  * Created by Iggytoto on 11.07.2017.
  */
-@RestController
-@RequestMapping(value = "/test")
+@Controller
+@RequestMapping(value = "/restController")
 public class PostController {
 
     //BlogService blogService;
@@ -26,7 +27,7 @@ public class PostController {
         this.blogService = blogService;
     }*/
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView sayHello(ModelAndView mav){
 
         posts = new ArrayList<Post>();

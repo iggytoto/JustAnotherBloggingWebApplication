@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Iggytoto
@@ -46,24 +47,27 @@
 
     <div class="container" style="width: 700px;">
 
+        <c:forEach items="${requestScope.posts}" var="pst">
         <p>
-
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                        <span>Name : </span> Ivan Ivanov
+                        <span>Name : </span> <c:out value="${pst.name}"></c:out>
                         ,
                         <span>Date : </span> 07.07.2017
-
                 </div>
 
                 <div class="panel-body">
-                    TextTextText...
+
+                    <c:out value="${pst.text}"></c:out>
+
                 </div>
 
             </div>
-
         </p>
+        </c:forEach>
+
+
 
     </div>
 
