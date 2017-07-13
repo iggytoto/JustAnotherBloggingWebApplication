@@ -13,13 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by Iggytoto on 11.07.2017.
  */
 @Configuration
-public class AppConfig {
+public class AppConfig{
 
     @Bean
-    Logger getLogger(){
+    Logger getLogger() {
         return Logger.getLogger(AppConfig.class);
     }
-
-    //TODO make something adequate...
-    public final static boolean IS_DEBUG = true;
 }
