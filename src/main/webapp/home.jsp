@@ -79,19 +79,19 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
 
-                <form method="post">
+                <form method="post" id="input-form">
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="name1">
+                        <input id="input-form-name-input" type="text" class="form-control" id="recipient-name" name="name1">
                     </div>
 
                     <div class="form-group">
                         <label for="message-text" class="control-label">Text:</label>
-                        <textarea class="form-control" id="message-text" name="text1"></textarea>
+                        <textarea id="input-form-text-input" class="form-control" id="message-text" name="text1"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
+                    <button id="input-form-submit" type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
 
                 </form>
 
@@ -105,5 +105,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./js/homeValidation.js"/>
 </body>
 </html>
