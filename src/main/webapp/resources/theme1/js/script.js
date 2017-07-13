@@ -16,7 +16,7 @@ $(".crossClick").click(function () {
 
     var postId = $(this).parent().children(".uid").val();
 
-    var index = $(this).parent().parent().index("div.panel-default");
+    var targetParentDivIndex = $(this).parent().parent().index("div.panel-default");
     // var found = $("div.container").find("div.panel-default:nth-child(2)").html(); // ok
     // var found = $("div.container").find("div.panel-default:nth-child(2)").remove(); // ok !
 
@@ -30,7 +30,7 @@ $(".crossClick").click(function () {
         type: 'DELETE',
         success: function (result) {
 
-            $("div.container").find("div.panel-default").eq(index).remove();
+            $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
         }
     });
 
@@ -41,11 +41,16 @@ $(".pencilClick").click(function () {
 
     var userName = $(this).parent().children(".uname").text();
     var userText = $(this).parent().parent().children(".utext").text();
-    var userId = $(this).parent().children(".uid").val();
+    var userId = $(this).parent().children(".uid").val(); // TODO: у свежесозданных постов нет ИД. А с пустышкой будет отправляться на добавление
+
+    var targetParentDivIndex = $(this).parent().parent().index("div.panel-default");
+
 
     $("input[name = 'name1']").val(userName);
     $("textarea[name = 'text1']").val(userText);
     $("input[name = 'id1']").val(userId);
+
+    $("input[name = 'tpdi']").val(targetParentDivIndex);
 
 });
 
@@ -58,8 +63,10 @@ $(".btnSubmit").click(function (e) {
     var userName = $("input[name = 'name1']").val();
     var userText = $("textarea[name = 'text1']").val();
 
-// если айдишник есть, то изменить Пост
+// если айдишник есть, то ИЗМЕНИТЬ Пост
     if (hiddenId != "") {
+
+        var targetParentDivIndex = $("input[name = 'tpdi']").val();
 
         var postId = hiddenId;
 
@@ -71,12 +78,39 @@ $(".btnSubmit").click(function (e) {
             },
             method: 'POST', // PUT не проходит :(
             success: function (result) {
-                alert(result);
+
+                console.log(result);
+
+                if (String(result) == "postChanged") {
+
+                    $("div.container")
+                        .find("div.panel-default")
+                        .eq(targetParentDivIndex)
+                        .children(".panel-heading")
+                        .children("span.uname").text(userName);
+
+                    $("div.container")
+                        .find("div.panel-default")
+                        .eq(targetParentDivIndex)
+                        .children(".panel-body").text(userText);
+
+                    // TODO : нужна пустышка для hiddenId , чтобы не происходило добавления в БД !
+                    // или добавлять ИД на основе предыдущего ИД + 1
+
+                } else {
+
+                    alert("Ошибка при изменении поста");
+                }
             }
         });
 
-// а если нет айди, то добавить Пост
+// а если нет айди, то ДОБАВИТЬ Пост
     } else if (hiddenId == "") {
+
+        // вычисляем ХидденИД (uid) на основе предыдущей записи
+        // hiddenId = $( "div.panel-default:gt(0)" ).index();
+        // var hiddenId = $( "div.panel-default:gt(0)" );
+
 
         $.ajax({
             url: '/post/',
@@ -88,8 +122,7 @@ $(".btnSubmit").click(function (e) {
             success: function (result) {
 
                 if (String(result) == "postAdded") {
-/////////////////////
-                    // $("body > .container > nav").before("<p>111</p>"); // ok !
+                    // $("body > .container > nav").before("<p>111</p>"); // ok
                     $("body > .container").prepend(
                         "<div class='panel panel-default'>\
                             <div class='panel-heading'>\
@@ -122,8 +155,8 @@ $(".btnSubmit").click(function (e) {
                         <div class='panel-body utext'>" + userText + "</c:out></div>\
             \
                     </div>\
-            "); // ok also
-/////////////////////// hidden field ?
+            ");
+
                 } else {
 
                     alert("Ошибка при добавлении поста");
@@ -131,6 +164,12 @@ $(".btnSubmit").click(function (e) {
 
             }
         });
+
+        /// объектов на 1 меньше ???
+        // var hiddenId = $( "div.panel-default" );
+        // var hiddenId = $( "div.container > div" ); // wtf??
+        // var hiddenId = $( "div" ); // wtf??
+        // console.log(hiddenId);
 
     }
 

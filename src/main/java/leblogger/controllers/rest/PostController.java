@@ -111,8 +111,7 @@ public class PostController {
             e.printStackTrace();
         }
 
-        String res = "Post # " + id + " was changed.";
-        return res;
+        return "postChanged";
     }
 
 }

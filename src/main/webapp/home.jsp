@@ -137,6 +137,7 @@
                     </div>
 
                     <input type="hidden" name="id1" value="">
+                    <input type="hidden" name="tpdi" value="">
 
                     <button type="button" class="btn btn-primary btnSubmit" data-dismiss="modal" style="margin-left: 150px;">Send message</button>
 
