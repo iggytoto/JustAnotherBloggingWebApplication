@@ -2,7 +2,6 @@ package leblogger.controllers.rest;
 
 import leblogger.model.Post;
 import leblogger.services.BlogService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
