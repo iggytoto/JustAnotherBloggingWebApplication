@@ -74,14 +74,14 @@ public class PostController {
     }
 
     // добавить запись
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path = "/post/", method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
 
 
         blogService.addPost(new Post(name1, text1));
 
-        return "redirect:/";
+        return "1";
     }
 
     // удалить запись
@@ -98,6 +98,7 @@ public class PostController {
         return res;
     }
 
+    // изменить запись
     @RequestMapping(path = "/post/{id}", method = RequestMethod.PUT)
     public String updatePost(@PathVariable long id,
                              @RequestParam(value = "name1", required = false) String name1,
