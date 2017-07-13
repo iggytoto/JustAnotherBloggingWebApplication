@@ -1,0 +1,4 @@
+These are deployment level configurations.
+Use them to connect to the production base.
+
+Since we are using tomcat, we need to put them in %TOMCAT_PATH%/conf/bloggingapp/

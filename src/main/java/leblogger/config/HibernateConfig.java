@@ -21,9 +21,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @PropertySource(value = {
-        "classpath:application.properties",
-        "classpath:hibernate-debug.properties"
-})
+        "classpath:hibernate.properties",
+        "file:${catalina.home}/conf/bloggingapp/hibernate.properties"
+}, ignoreResourceNotFound = true)
 public class HibernateConfig {
 
     @Autowired
@@ -32,20 +32,10 @@ public class HibernateConfig {
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        if(AppConfig.IS_DEBUG){
-            dataSource.setDriverClassName(env.getRequiredProperty("debug.hibernate.connection.driver_class"));
-            dataSource.setUrl(env.getRequiredProperty("debug.hibernate.connection.url"));
-            dataSource.setUsername(env.getRequiredProperty("debug.hibernate.connection.username"));
-            dataSource.setPassword(env.getRequiredProperty("debug.hibernate.connection.password"));
-
-        }
-        else{
-            dataSource.setDriverClassName(env.getRequiredProperty("datasource.driver"));
-            dataSource.setUrl(env.getRequiredProperty("datasource.url"));
-            dataSource.setUsername(env.getRequiredProperty("datasource.username"));
-            dataSource.setPassword(env.getRequiredProperty("datasource.password"));
-
-        }
+        dataSource.setDriverClassName(env.getRequiredProperty("datasource.driver"));
+        dataSource.setUrl(env.getRequiredProperty("datasource.url"));
+        dataSource.setUsername(env.getRequiredProperty("datasource.username"));
+        dataSource.setPassword(env.getRequiredProperty("datasource.password"));
         return dataSource;
     }
 
@@ -60,17 +50,11 @@ public class HibernateConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        if(AppConfig.IS_DEBUG){
-            properties.put(AvailableSettings.DIALECT, env.getRequiredProperty("debug.hibernate.dialect"));
-            properties.put(AvailableSettings.SHOW_SQL, env.getRequiredProperty("debug.hibernate.show_sql"));
-            properties.put(AvailableSettings.HBM2DDL_AUTO,env.getRequiredProperty("debug.hibernate.hbm2ddl.auto"));
-        }
-        else{
-            properties.put(AvailableSettings.DIALECT, env.getRequiredProperty("hibernate.dialect"));
-            properties.put(AvailableSettings.SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
-            properties.put(AvailableSettings.STATEMENT_BATCH_SIZE, env.getRequiredProperty("hibernate.batch.size"));
-            properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current.session.context.class"));
-        }
+        properties.put(AvailableSettings.DIALECT, env.getRequiredProperty("hibernate.dialect"));
+        properties.put(AvailableSettings.SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
+        properties.put(AvailableSettings.STATEMENT_BATCH_SIZE, env.getRequiredProperty("hibernate.batch.size"));
+        properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current.session.context.class"));
+        properties.put(AvailableSettings.HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
 
