@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+import static jdk.nashorn.internal.runtime.Context.DEBUG;
+
 /**
  * Created by Iggytoto on 11.07.2017.
  */
