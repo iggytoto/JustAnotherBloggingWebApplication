@@ -33,6 +33,7 @@ public class PostController {
         return mav;
     }
 
+    // добавить запись
     @RequestMapping(method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
@@ -42,26 +43,32 @@ public class PostController {
         return "redirect:/";
     }
 
+    // удалить запись
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
 //    public ModelAndView delPost(@PathVariable int id, ModelAndView mav){
 //    @ResponseBody
     public String delPost(@PathVariable int id){
 //        mav.addObject("test", id);
 //        mav.setViewName("home");
+        String res = "Удалён пост номер : " + id;
+
+//        res = (id == 4)? "del ok" : "not ok";
 
 //        return mav;
 //        return "str : " + id;
-        return "del ok";
+        return res;
     }
 
-    @RequestMapping(path = "/update/{id}" , method = RequestMethod.PUT)
+    // изменить запись
+    @RequestMapping(path = "/post/{id}" , method = RequestMethod.PUT)
     public String updPost(@PathVariable int id,
                           @RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1
                           ){
 
+        String res = "Пост с номером : " + id + " и данными : " + name1 + ", " + text1 + "добавлен.";
 
-        return "upd ok";
+        return res;
     }
 
 }

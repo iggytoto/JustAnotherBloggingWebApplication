@@ -1,18 +1,29 @@
 /**
  * Created by satyam on 12.07.2017.
  */
+// при старте окна добавления записи убираем postID
+$(".addClick").click(function () {
+    $("input[name = 'id1']").val("");
+});
+
+
+
+// Отправляет запрос на удаление
 $(".crossClick").click(function(){
 
+    var postId = $(this).parent().children(".uid").val();
+
     $.ajax({
-        url: '/post/4',
+        url: '/post/' + postId,
         type: 'DELETE',
         success: function(result) {
-            // Do something with the result
-            if (result == 'del ok') {
-                alert("Post Deleted")
-            } else {
-                alert("Not Deleted")
-            }
+
+            // if (result == 'del ok') {
+            //     alert("Post Deleted")
+            // } else {
+            //     alert("Not Deleted")
+            // }
+            alert(result);
         }
     });
 
@@ -21,15 +32,14 @@ $(".crossClick").click(function(){
 
 $(".pencilClick").click(function(){
 
-/*~*/
-    // var user_id = $(this).parent().parent().attr('id');
-    // var user_id = $("uid").val();
-    var user_id = $(this).parent().children(".uid").val();
+    var userName = $(this).parent().children(".uname").text();
+    var userText = $(this).parent().parent().children(".utext").text();
+    var userId = $(this).parent().children(".uid").val();
 
+    $("input[name = 'name1']").val(userName);
+    $("textarea[name = 'text1']").val(userText);
+    $("input[name = 'id1']").val(userId);
 
-    alert(user_id);
-
-    // var user_name = $(".panel-heading > span:first-child > span").html;
 
     /*
     downloadUserData(user_id);
@@ -42,26 +52,50 @@ $(".pencilClick").click(function(){
 
 });
 
-/*
- $("#formpage").submit(function(e) {
 
-if (hidden field is not NULL and (int) id > 0) {
-// then update
- $.post("/updateUser", {
- command : "update_user_by_id",
- user_id : user_id
- }).done(function(data) {
+// formpage submit
+$("form").submit(function(e) {
 
- alert(data);
- $("#updshade").click();
- }
- )
+    // var hiddenId = $(this).parent().children(".uid").val();
+    var hiddenId = $("input[name = 'id1']").val();
 
-} else if ( hidden field IS null || empty ) {
+    if ( hiddenId != "" ) {
+    // then update
 
-    // then add
+        $.ajax({
+            url: '/post/' + postId,
+            type: 'PUT',
+            success: function(result) {
 
-}
+                // if (result == 'del ok') {
+                //     alert("Post Deleted")
+                // } else {
+                //     alert("Not Deleted")
+                // }
+                alert(result);
+            }
+        });
 
- });
- */
+    }
+
+    /*
+    else if ( hiddenId == "" ) {
+        // then add
+        $.ajax({
+            url: '/post/' + postId,
+            type: 'POST',
+            success: function(result) {
+
+                // if (result == 'del ok') {
+                //     alert("Post Deleted")
+                // } else {
+                //     alert("Not Deleted")
+                // }
+                alert(result);
+            }
+        });
+
+    }
+*/
+});
+

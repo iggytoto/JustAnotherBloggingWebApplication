@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>leBlogger</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -33,7 +34,7 @@
         <div>
 
             <button type="button"
-                    class="btn btn-lg btn-primary btn-block"
+                    class="btn btn-lg btn-primary btn-block addClick"
                     data-toggle="modal"
                     data-target=".bs-example-modal-sm"
             >Submit new Post
@@ -78,11 +79,7 @@
 
             </div>
 
-            <div class="panel-body" class="utext">
-
-                <c:out value="${pst.text}"></c:out>
-
-            </div>
+            <div class="panel-body utext"><c:out value="${pst.text}"></c:out></div>
 
         </div>
         </p>
@@ -113,6 +110,8 @@
                         <label for="message-text" class="control-label">Text:</label>
                         <textarea class="form-control" id="message-text" name="text1"></textarea>
                     </div>
+
+                    <input type="hidden" name="id1" value="">
 
                     <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
 
