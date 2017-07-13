@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.SQLException;
+
 /**
  * Created by Iggytoto on 12.07.2017.
  */
 @Controller
 @RequestMapping(value = "/testController")
 public class TestController {
-    @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
-    public String test(){
 
+    @RequestMapping(method = RequestMethod.GET, value = "/testMethod")
+    public String test() throws SQLException {
         return "test";
     }
 }
