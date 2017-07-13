@@ -44,4 +44,10 @@ public class BlogServiceImpl implements BlogService {
     public ArrayList<Post> getRange(int from, int to) throws SQLException {
         return new ArrayList(dbRep.getRange(from, to));
     }
+    public void deletePost(long id) throws SQLException{
+        crudRep.delete(id);
+    }
+    public void updatePost(Post post) throws SQLException{
+        crudRep.update(post);
+    }
 }

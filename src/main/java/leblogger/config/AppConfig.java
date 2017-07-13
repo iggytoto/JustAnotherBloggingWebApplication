@@ -21,5 +21,5 @@ public class AppConfig {
     }
 
     //TODO make something adequate...
-    public final static boolean IS_DEBUG = true;
+    public final static boolean IS_DEBUG = false;
 }

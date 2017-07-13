@@ -54,14 +54,8 @@ public class PostController {
         int numberPage = Integer.parseInt(numberPageParam);
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
-
-
-        // TESTTEST
         int from =(numberPage-1)*pagesDivider;
         int to = numberPage*pagesDivider-1;
-        System.out.println("FROM: "+from);
-        System.out.println("TO: "+to);
-
         try {
             posts = blogService.getRange(from, to);
         } catch (SQLException e) {
@@ -76,9 +70,32 @@ public class PostController {
     @RequestMapping(method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
-
         blogService.addPost(new Post(name1, text1));
-
         return "redirect:/";
     }
+
+    @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
+    public String deletePost(@PathVariable int id){
+        try {
+            blogService.deletePost(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String res = "Удалён пост номер : " + id;
+        return res;
+    }
+
+    @RequestMapping(path = "/post/{id}" , method = RequestMethod.PUT)
+    public String updatePost(@PathVariable long id,
+                          @RequestParam(value = "name1", required = false) String name1,
+                          @RequestParam(value = "text1", required = false) String text1){
+        try {
+            blogService.updatePost(new Post(id,name1,text1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String res = "Пост с номером : " + id + " и данными : " + name1 + ", " + text1 + " изменен.";
+        return res;
+    }
+
 }
