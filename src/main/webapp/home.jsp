@@ -16,8 +16,6 @@
 
 <body style="padding-top: 280px;">
 
-<h1>${requestScope.pagesCount}</h1>
-
 <nav class="navbar navbar-default navbar-fixed-top">
 
     <div class="container" style="width: 700px;">
