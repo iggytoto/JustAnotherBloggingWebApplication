@@ -66,15 +66,17 @@ public class PostController {
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
     public String deletePost(@PathVariable int id){
         blogService.deletePost(id);
-        return "1";
+        String res = "Post # " + id + " deleted";
+        return res;
     }
 
-    @RequestMapping(path = "/post/{id}" , method = RequestMethod.PUT)
+    @RequestMapping(path = "/post/{id}" , method = RequestMethod.POST)
     public String updatePost(@PathVariable long id,
                           @RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1){
         blogService.updatePost(new Post(id,name1,text1));
-        return "1";
+        String res = "Post # " + id + " was changed.";
+        return res;
     }
 
 }
