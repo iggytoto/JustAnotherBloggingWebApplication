@@ -14,8 +14,7 @@
 
 </head>
 
-<body style="padding-top: 280px;" >
-
+<body style="padding-top: 280px;">
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
@@ -30,43 +29,43 @@
 
         </div>
 
-    <div>
+        <div>
 
-        <button type="button"
-                class="btn btn-lg btn-primary btn-block"
-                data-toggle="modal"
-                data-target=".bs-example-modal-sm"
-        >Submit new Post</button>
+            <button type="button"
+                    class="btn btn-lg btn-primary btn-block"
+                    data-toggle="modal"
+                    data-target=".bs-example-modal-sm"
+            >Submit new Post
+            </button>
 
-    </div>
+        </div>
 
     </div>
 
 </nav>
 
-    <div class="container" style="width: 700px;">
+<div class="container" style="width: 700px;">
 
-        <c:forEach items="${requestScope.posts}" var="pst">
+    <c:forEach items="${requestScope.posts}" var="pst">
         <p>
-            <div class="panel panel-default">
+        <div class="panel panel-default">
 
-                <div class="panel-heading">
-                        <span>Name : </span> <c:out value="${pst.name}"></c:out>
-                </div>
+            <div class="panel-heading">
+                <span>Name : </span> <c:out value="${pst.name}"></c:out>
+            </div>
 
-                <div class="panel-body">
+            <div class="panel-body">
 
-                    <c:out value="${pst.text}"></c:out>
-
-                </div>
+                <c:out value="${pst.text}"></c:out>
 
             </div>
+
+        </div>
         </p>
-        </c:forEach>
+    </c:forEach>
 
 
-
-    </div>
+</div>
 
 <%--/container--%>
 
@@ -77,7 +76,8 @@
         <div class="modal-content">
 
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
 
                 <form method="post">
 

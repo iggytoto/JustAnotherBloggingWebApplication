@@ -3,6 +3,7 @@ package leblogger.services;
 import leblogger.model.Post;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -12,4 +13,6 @@ import java.util.ArrayList;
 public interface BlogService {
     ArrayList<Post> getAllPosts();
     void addPost(Post post);
+    long getCount();
+    ArrayList<Post> getRange(int from,int to) throws SQLException;
 }
