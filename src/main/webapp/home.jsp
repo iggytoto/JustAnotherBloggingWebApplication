@@ -99,7 +99,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
 
-                <form method="post">
+                <form>
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
@@ -113,7 +113,7 @@
 
                     <input type="hidden" name="id1" value="">
 
-                    <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
+                    <button type="button" class="btn btn-primary btnSubmit" style="margin-left: 150px;">Send message</button>
 
                 </form>
 

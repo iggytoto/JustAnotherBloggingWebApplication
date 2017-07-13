@@ -54,7 +54,8 @@ $(".pencilClick").click(function(){
 
 
 // formpage submit
-$("form").submit(function(e) {
+// $("form").submit(function(e) {
+$(".btnSubmit").click(function(e) {
 
     // var hiddenId = $(this).parent().children(".uid").val();
     var hiddenId = $("input[name = 'id1']").val();
@@ -62,6 +63,8 @@ $("form").submit(function(e) {
     if ( hiddenId != "" ) {
     // then update
 
+        alert("update");
+        /*
         $.ajax({
             url: '/post/' + postId,
             type: 'PUT',
@@ -75,13 +78,13 @@ $("form").submit(function(e) {
                 alert(result);
             }
         });
+*/
+    } else if ( hiddenId == "" ) {
 
-    }
+        alert("then add");
 
-    /*
-    else if ( hiddenId == "" ) {
         // then add
-        $.ajax({
+        /*  $.ajax({
             url: '/post/' + postId,
             type: 'POST',
             success: function(result) {
@@ -94,8 +97,8 @@ $("form").submit(function(e) {
                 alert(result);
             }
         });
-
+        */
     }
-*/
+
 });
 
