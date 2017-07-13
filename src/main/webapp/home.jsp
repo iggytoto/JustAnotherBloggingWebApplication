@@ -49,7 +49,7 @@
 <div class="container" style="width: 700px;">
 
     <c:forEach items="${requestScope.posts}" var="pst">
-        <p>
+        <%--<p>--%>
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -82,7 +82,7 @@
             <div class="panel-body utext"><c:out value="${pst.text}"></c:out></div>
 
         </div>
-        </p>
+        <%--</p>--%>
     </c:forEach>
 
 <%--Pagination--%>

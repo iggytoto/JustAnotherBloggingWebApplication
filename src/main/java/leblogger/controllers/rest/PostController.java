@@ -82,7 +82,7 @@ public class PostController {
 
         blogService.addPost(new Post(name1, text1));
 
-        return "1";
+        return "postAdded";
     }
 
     // удалить запись

@@ -6,7 +6,7 @@ $(".addClick").click(function () {
 
     $("input[name = 'id1']").val("");
     $("input[name = 'name1']").val("");
-    $("input[name = 'text1']").val("");
+    $("textarea[name = 'text1']").val("");
 
 });
 
@@ -16,12 +16,21 @@ $(".crossClick").click(function () {
 
     var postId = $(this).parent().children(".uid").val();
 
+    var index = $(this).parent().parent().index("div.panel-default");
+    // var found = $("div.container").find("div.panel-default:nth-child(2)").html(); // ok
+    // var found = $("div.container").find("div.panel-default:nth-child(2)").remove(); // ok !
+
+    // var found = $("div.container").find("div.panel-default:nth-child(1)").index(); // 2 = 1 , 1 = 0 // ok
+
+    // index++;
+
+    // console.log(index);
     $.ajax({
         url: '/post/' + postId,
         type: 'DELETE',
         success: function (result) {
 
-            alert(result);
+            $("div.container").find("div.panel-default").eq(index).remove();
         }
     });
 
@@ -65,6 +74,7 @@ $(".btnSubmit").click(function (e) {
                 alert(result);
             }
         });
+
 // а если нет айди, то добавить Пост
     } else if (hiddenId == "") {
 
@@ -76,9 +86,52 @@ $(".btnSubmit").click(function (e) {
             },
             type: 'POST',
             success: function (result) {
-                alert(result);
+
+                if (String(result) == "postAdded") {
+/////////////////////
+                    // $("body > .container > nav").before("<p>111</p>"); // ok !
+                    $("body > .container").prepend(
+                        "<div class='panel panel-default'>\
+                            <div class='panel-heading'>\
+                                <span>Name : </span><span class='uname'>" + userName + "</span>\
+                                ,\
+                                <span>Date : </span> 07.07.2017\
+                           <button type='button'\
+                                   class='btn btn-default btn-md crossClick'\
+                                   style='float: right;'\
+                            >\
+                              <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
+                          </button>\
+            \
+                        <button type='button'\
+                                class='btn btn-default btn-md pencilClick'\
+                                style='float: right;'\
+                                data-toggle='modal'\
+                                data-target='.bs-example-modal-sm'\
+                        >\
+                        <span class='glyphicon glyphicon-pencil'\
+                               aria-hidden='true'></span>\
+                        </button>\
+            \
+                        <input type='hidden' class='uid' value='" + hiddenId + "' >\
+            \
+                        <hr style='clear: right; border: 0; margin: 0;'>\
+            \
+                        </div>\
+            \
+                        <div class='panel-body utext'>" + userText + "</c:out></div>\
+            \
+                    </div>\
+            "); // ok also
+/////////////////////// hidden field ?
+                } else {
+
+                    alert("Ошибка при добавлении поста");
+                }
+
             }
         });
+
     }
 
 });
