@@ -13,13 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by Iggytoto on 11.07.2017.
  */
 @Configuration
-public class AppConfig {
+@PropertySource(value = {
+        "classpath:application.properties",
+        "file:${catalina.home}/conf/bloggingapp/application.properties"
+}, ignoreResourceNotFound = true)
+public class AppConfig{
 
-    @Bean
-    Logger getLogger(){
-        return Logger.getLogger(AppConfig.class);
-    }
-
-    //TODO make something adequate...
-    public final static boolean IS_DEBUG = false;
 }
