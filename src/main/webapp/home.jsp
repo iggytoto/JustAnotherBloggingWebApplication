@@ -9,12 +9,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>leBlogger</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 
 <body style="padding-top: 280px;">
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
@@ -32,7 +34,7 @@
         <div>
 
             <button type="button"
-                    class="btn btn-lg btn-primary btn-block"
+                    class="btn btn-lg btn-primary btn-block addClick"
                     data-toggle="modal"
                     data-target=".bs-example-modal-sm"
             >Submit new Post
@@ -51,18 +53,61 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <span>Name : </span> <c:out value="${pst.name}"></c:out>
+                <span>Name : </span><span class="uname"><c:out value="${pst.name}"></c:out></span>
+                ,
+                <span>Date : </span> 07.07.2017
+
+                <button type="button"
+                        class="btn btn-default btn-md crossClick"
+                        style="float: right;"
+                        >
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+
+                <button type="button"
+                        class="btn btn-default btn-md pencilClick"
+                        style="float: right;"
+                        data-toggle="modal"
+                        data-target=".bs-example-modal-sm"
+                >
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </button>
+
+                <input type="hidden" class="uid" value="${pst.id}" >
+
+                <hr style="clear: right; border: 0; margin: 0;">
+
             </div>
 
-            <div class="panel-body">
-
-                <c:out value="${pst.text}"></c:out>
-
-            </div>
+            <div class="panel-body utext"><c:out value="${pst.text}"></c:out></div>
 
         </div>
         </p>
     </c:forEach>
+
+<%--Pagination--%>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+<%--/pagination    --%>
 
 
 </div>
@@ -79,7 +124,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
 
-                <form method="post">
+                <form>
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
@@ -91,7 +136,9 @@
                         <textarea class="form-control" id="message-text" name="text1"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Send message</button>
+                    <input type="hidden" name="id1" value="">
+
+                    <button type="button" class="btn btn-primary btnSubmit" style="margin-left: 150px;">Send message</button>
 
                 </form>
 
@@ -105,5 +152,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/script.js" />"></script>
 </body>
 </html>
