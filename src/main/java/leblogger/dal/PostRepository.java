@@ -78,7 +78,7 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
         Criteria c = getSession().createCriteria(Post.class);
         c.addOrder(Order.desc("id"));
         c.setFirstResult(from);
-        c.setMaxResults(to - from+1);
+        c.setMaxResults(to - from + 1);
         List<Post> l = c.list();
         return l;
     }
