@@ -1,0 +1,1 @@
+INSERT INTO post (id,name,text) VALUES (1,'first','first text'), (2,'first2','firsasdt text'), (3,'first3','firasdst text'), (4,'first4','firsasdt text'), (5,'first5','firsasdasdt text'), (6,'first6','firstasd text'), (7,'first7','firstasd text'), (8,'first8','firstasd text'), (9,'first9','first taasdext'), (10,'first12','firsasdt text'), (11,'first311','firsasdt text')
