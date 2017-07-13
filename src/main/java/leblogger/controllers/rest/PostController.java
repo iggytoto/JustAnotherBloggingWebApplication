@@ -52,6 +52,7 @@ public class PostController {
         return mav;
     }
 
+    // перейти на страницу
     @RequestMapping(value = "/{numberPageParam}", method = RequestMethod.GET)
     public ModelAndView viewNumberPage(ModelAndView mav, @PathVariable String numberPageParam) {
 
@@ -94,12 +95,12 @@ public class PostController {
             e.printStackTrace();
         }
 
-        String res = "Удалён пост номер : " + id;
+        String res = "Post # " + id + " deleted";
         return res;
     }
 
     // изменить запись
-    @RequestMapping(path = "/post/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/post/{id}", method = RequestMethod.POST) // !
     public String updatePost(@PathVariable long id,
                              @RequestParam(value = "name1", required = false) String name1,
                              @RequestParam(value = "text1", required = false) String text1) {
@@ -110,7 +111,7 @@ public class PostController {
             e.printStackTrace();
         }
 
-        String res = "Пост с номером : " + id + " и данными : " + name1 + ", " + text1 + " изменен.";
+        String res = "Post # " + id + " was changed.";
         return res;
     }
 
