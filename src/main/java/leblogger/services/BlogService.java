@@ -14,7 +14,7 @@ public interface BlogService {
     ArrayList<Post> getAllPosts();
     void addPost(Post post);
     long getCount();
-    ArrayList<Post> getRange(int from,int to) throws SQLException;
-    void deletePost(long id) throws SQLException;
-    void updatePost(Post post) throws SQLException;
+    ArrayList<Post> getRange(int from,int to);
+    void deletePost(long id);
+    void updatePost(Post post);
 }

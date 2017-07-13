@@ -41,13 +41,27 @@ public class BlogServiceImpl implements BlogService {
         return dbRep.countEntities();
     }
 
-    public ArrayList<Post> getRange(int from, int to) throws SQLException {
-        return new ArrayList(dbRep.getRange(from, to));
+    public ArrayList<Post> getRange(int from, int to){
+        ArrayList posts = new ArrayList();
+        try {
+            posts.addAll(dbRep.getRange(from, to));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return posts;
     }
-    public void deletePost(long id) throws SQLException{
-        crudRep.delete(id);
+    public void deletePost(long id){
+        try {
+            crudRep.delete(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void updatePost(Post post) throws SQLException{
-        crudRep.update(post);
+    public void updatePost(Post post){
+        try {
+            crudRep.update(post);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

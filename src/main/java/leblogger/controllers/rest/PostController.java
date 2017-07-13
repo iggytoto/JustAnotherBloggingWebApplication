@@ -37,11 +37,7 @@ public class PostController {
     public ModelAndView viewPosts(ModelAndView mav) {
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
-        try {
-            posts = blogService.getRange(0,pagesDivider-1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        posts = blogService.getRange(0,pagesDivider-1);
         mav.addObject("posts", posts);
         mav.addObject("pagesCount", count/pagesDivider+(count%pagesDivider>0?1:0));
         mav.setViewName("home.jsp");
@@ -53,20 +49,14 @@ public class PostController {
         int numberPage = Integer.parseInt(numberPageParam);
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
-        int from =(numberPage-1)*pagesDivider;
-        int to = numberPage*pagesDivider-1;
-        try {
-            posts = blogService.getRange(from, to);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        posts = blogService.getRange((numberPage-1)*pagesDivider, numberPage*pagesDivider-1);
         mav.addObject("posts", posts);
         mav.addObject("pagesCount", count/pagesDivider+(count%pagesDivider>0?1:0));
         mav.setViewName("home.jsp");
         return mav;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path = "/post", method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
         blogService.addPost(new Post(name1, text1));
@@ -75,26 +65,16 @@ public class PostController {
 
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
     public String deletePost(@PathVariable int id){
-        try {
-            blogService.deletePost(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String res = "Удалён пост номер : " + id;
-        return res;
+        blogService.deletePost(id);
+        return "1";
     }
 
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.PUT)
     public String updatePost(@PathVariable long id,
                           @RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1){
-        try {
-            blogService.updatePost(new Post(id,name1,text1));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String res = "Пост с номером : " + id + " и данными : " + name1 + ", " + text1 + " изменен.";
-        return res;
+        blogService.updatePost(new Post(id,name1,text1));
+        return "1";
     }
 
 }
