@@ -1,9 +1,13 @@
 /**
  * Created by satyam on 12.07.2017.
  */
-// при старте окна добавления записи убираем postID
+// при старте окна на добавление записи - убираем postID и другие данные из полей
 $(".addClick").click(function () {
+
     $("input[name = 'id1']").val("");
+    $("input[name = 'name1']").val("");
+    $("input[name = 'text1']").val("");
+
 });
 
 
@@ -17,18 +21,13 @@ $(".crossClick").click(function () {
         type: 'DELETE',
         success: function (result) {
 
-            // if (result == 'del ok') {
-            //     alert("Post Deleted")
-            // } else {
-            //     alert("Not Deleted")
-            // }
             alert(result);
         }
     });
 
 });
 
-// edit post
+// подготовка формы к редактированию
 $(".pencilClick").click(function () {
 
     var userName = $(this).parent().children(".uname").text();
@@ -39,17 +38,7 @@ $(".pencilClick").click(function () {
     $("textarea[name = 'text1']").val(userText);
     $("input[name = 'id1']").val(userId);
 
-    /*
-     downloadUserData(user_id);
-
-     $("#updshade").css("display","block");
-     $("#formpage").css("display","block");
-
-     $("#updUserId").val(user_id);
-     */
-
 });
-
 
 // formpage submit
 // $("form").submit(function(e) {
@@ -84,18 +73,23 @@ function validateFields() {
     return !nameValid && !textValid;
 }
 
+
+// Отправка формы
+
 $(".btnSubmit").click(function (e) {
     if (!validateFields()) {
         return;
     }
 
-    // var hiddenId = $(this).parent().children(".uid").val();
     var hiddenId = $("input[name = 'id1']").val();
 
     var userName = $("input[name = 'name1']").val();
     var userText = $("textarea[name = 'text1']").val();
 
+// если айдишник есть, то изменить Пост
     if (hiddenId != "") {
+
+        var postId = hiddenId;
 
         $.ajax({
             url: '/post/' + postId,
@@ -103,18 +97,12 @@ $(".btnSubmit").click(function (e) {
                 name1: userName,
                 text1: userText
             },
-            type: 'PUT',
+            method: 'POST', // PUT не проходит :(
             success: function (result) {
-
-                // if (result == 'del ok') {
-                //     alert("Post Deleted")
-                // } else {
-                //     alert("Not Deleted")
-                // }
                 alert(result);
             }
         });
-
+// а если нет айди, то добавить Пост
     } else if (hiddenId == "") {
 
         $.ajax({
@@ -125,7 +113,6 @@ $(".btnSubmit").click(function (e) {
             },
             type: 'POST',
             success: function (result) {
-
                 alert(result);
                 /*
                  if (result == '1') {
@@ -138,6 +125,7 @@ $(".btnSubmit").click(function (e) {
 
                  }
                  */
+
             }
         });
     }
