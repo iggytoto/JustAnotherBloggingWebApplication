@@ -2,7 +2,6 @@ package leblogger.controllers.rest;
 
 import leblogger.model.Post;
 import leblogger.services.BlogService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
@@ -67,13 +66,18 @@ public class PostController {
         return mav;
     }
 
+    // добавить запись
     @RequestMapping(method = RequestMethod.POST)
     public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
+
+
         blogService.addPost(new Post(name1, text1));
+
         return "redirect:/";
     }
 
+    // удалить запись
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
     public String deletePost(@PathVariable int id){
         try {
