@@ -138,7 +138,7 @@
 
                     <input type="hidden" name="id1" value="">
 
-                    <button type="button" class="btn btn-primary btnSubmit" style="margin-left: 150px;">Send message</button>
+                    <button type="button" class="btn btn-primary btnSubmit" data-dismiss="modal" style="margin-left: 150px;">Send message</button>
 
                 </form>
 
