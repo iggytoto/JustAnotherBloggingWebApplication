@@ -39,13 +39,10 @@ public class PostController {
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
         try {
-            posts = blogService.getRange(1,pagesDivider);
+            posts = blogService.getRange(0,pagesDivider-1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.println(posts.get(1).getId());
-
         mav.addObject("posts", posts);
         mav.addObject("pagesCount", count/pagesDivider+(count%pagesDivider>0?1:0));
         mav.setViewName("home.jsp");
@@ -57,8 +54,16 @@ public class PostController {
         int numberPage = Integer.parseInt(numberPageParam);
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
+
+
+        // TESTTEST
+        int from =(numberPage-1)*pagesDivider;
+        int to = numberPage*pagesDivider-1;
+        System.out.println("FROM: "+from);
+        System.out.println("TO: "+to);
+
         try {
-            posts = blogService.getRange((numberPage-1)*pagesDivider+1, numberPage*pagesDivider+1);
+            posts = blogService.getRange(from, to);
         } catch (SQLException e) {
             e.printStackTrace();
         }

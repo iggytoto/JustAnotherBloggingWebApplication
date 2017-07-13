@@ -71,14 +71,14 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
     }
 
     public List<Post> getRange(int from, int to) {
-        if (from < 0 || to < 0 || from >= to) {
+        if (from < 0 || to < 0 || from > to) {
             throw new IllegalArgumentException("From and To parameters should not be negative, equal and From should be less that To.");
         }
 
         Criteria c = getSession().createCriteria(Post.class);
         c.addOrder(Order.desc("id"));
-        c.setFirstResult(0);
-        c.setMaxResults(to - from);
+        c.setFirstResult(from);
+        c.setMaxResults(to - from+1);
         List<Post> l = c.list();
         return l;
     }
