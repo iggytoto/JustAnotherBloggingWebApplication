@@ -60,7 +60,7 @@
                 <button type="button"
                         class="btn btn-default btn-md crossClick"
                         style="float: right;"
-                        >
+                >
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
 
@@ -73,7 +73,7 @@
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
 
-                <input type="hidden" class="uid" value="${pst.id}" >
+                <input type="hidden" class="uid" value="${pst.id}">
 
                 <hr style="clear: right; border: 0; margin: 0;">
 
@@ -85,7 +85,7 @@
         </p>
     </c:forEach>
 
-<%--Pagination--%>
+    <%--Pagination--%>
 
     <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -107,7 +107,7 @@
         </ul>
     </nav>
 
-<%--/pagination    --%>
+    <%--/pagination    --%>
 
 
 </div>
@@ -128,17 +128,21 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
-                        <input id="input-form-name-input" type="text" class="form-control" id="recipient-name" name="name1">
+                        <input type="text" class="form-control" id="recipient-name"
+                               name="name1">
                     </div>
 
                     <div class="form-group">
                         <label for="message-text" class="control-label">Text:</label>
-                        <textarea id="input-form-text-input" class="form-control" id="message-text" name="text1"></textarea>
+                        <textarea class="form-control" id="message-text"
+                                  name="text1"></textarea>
                     </div>
 
                     <input type="hidden" name="id1" value="">
 
-                    <button id="input-form-submit" type="button" class="btn btn-primary btnSubmit" style="margin-left: 150px;">Send message</button>
+                    <button id="input-form-submit" type="button" class="btn btn-primary btnSubmit"
+                            style="margin-left: 150px;">Send message
+                    </button>
 
                 </form>
 
@@ -152,7 +156,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<c:url value="/resources/theme1/js/homeValidation.js" />"/>
 <script src="<c:url value="/resources/theme1/js/script.js" />"></script>
+
 </body>
 </html>

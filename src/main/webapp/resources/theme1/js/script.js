@@ -53,7 +53,41 @@ $(".pencilClick").click(function () {
 
 // formpage submit
 // $("form").submit(function(e) {
+
+function validateFields() {
+    formNameEntry = document.getElementById("recipient-name");
+    formTextEntry = document.getElementById("message-text");
+    var nameValid = false;
+    var textValid = false;
+
+    if (formNameEntry.value == "") {
+        formNameEntry.style.border = "thin solid #FF0000"
+        formNameEntry.setAttribute("title", "Please enter your not empty name.");
+        nameValid = true;
+    }
+    else{
+        formNameEntry.style.border = "none"
+        formNameEntry.removeAttribute("title");
+        nameValid = false;
+    }
+
+    if (formTextEntry.value == "") {
+        formTextEntry.style.border = "thin solid #FF0000"
+        formTextEntry.setAttribute("title", "Please enter your not empty name.")
+        textValid = true;
+    }
+    else {
+        formTextEntry.style.border = "none"
+        formTextEntry.removeAttribute("title");
+        textValid = false;
+    }
+    return !nameValid && !textValid;
+}
+
 $(".btnSubmit").click(function (e) {
+    if (!validateFields()) {
+        return;
+    }
 
     // var hiddenId = $(this).parent().children(".uid").val();
     var hiddenId = $("input[name = 'id1']").val();
@@ -94,16 +128,16 @@ $(".btnSubmit").click(function (e) {
 
                 alert(result);
                 /*
-                if (result == '1') {
+                 if (result == '1') {
 
-                    alert("Запись добавлена");
+                 alert("Запись добавлена");
 
-                } else {
+                 } else {
 
-                    alert("Ошибка при добавлении записи");
+                 alert("Ошибка при добавлении записи");
 
-                }
-*/
+                 }
+                 */
             }
         });
     }
