@@ -52,23 +52,33 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <span>Name : </span> <c:out value="${pst.name}"></c:out>
+                <span>Name : </span><span class="uname"><c:out value="${pst.name}"></c:out></span>
                 ,
                 <span>Date : </span> 07.07.2017
 
-                <button type="button" class="btn btn-default btn-md" style="float: right;" id="crossClick">
+                <button type="button"
+                        class="btn btn-default btn-md crossClick"
+                        style="float: right;"
+                        >
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
 
-                <button type="button" class="btn btn-default btn-md" style="float: right;">
+                <button type="button"
+                        class="btn btn-default btn-md pencilClick"
+                        style="float: right;"
+                        data-toggle="modal"
+                        data-target=".bs-example-modal-sm"
+                >
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
+
+                <input type="hidden" class="uid" value="${pst.id}" >
 
                 <hr style="clear: right; border: 0; margin: 0;">
 
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" class="utext">
 
                 <c:out value="${pst.text}"></c:out>
 

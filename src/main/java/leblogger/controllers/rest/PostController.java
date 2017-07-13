@@ -44,13 +44,24 @@ public class PostController {
 
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
 //    public ModelAndView delPost(@PathVariable int id, ModelAndView mav){
-    public String delPost(@PathVariable int id, ModelAndView mav){
-
-        mav.addObject("test", id);
-        mav.setViewName("home");
+//    @ResponseBody
+    public String delPost(@PathVariable int id){
+//        mav.addObject("test", id);
+//        mav.setViewName("home");
 
 //        return mav;
-        return "redirect:/ttt";
+//        return "str : " + id;
+        return "del ok";
+    }
+
+    @RequestMapping(path = "/update/{id}" , method = RequestMethod.PUT)
+    public String updPost(@PathVariable int id,
+                          @RequestParam(value = "name1", required = false) String name1,
+                          @RequestParam(value = "text1", required = false) String text1
+                          ){
+
+
+        return "upd ok";
     }
 
 }
