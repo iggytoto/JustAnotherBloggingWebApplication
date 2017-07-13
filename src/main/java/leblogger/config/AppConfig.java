@@ -20,6 +20,4 @@ public class AppConfig {
         return Logger.getLogger(AppConfig.class);
     }
 
-    //TODO make something adequate...
-    public final static boolean IS_DEBUG = true;
 }
