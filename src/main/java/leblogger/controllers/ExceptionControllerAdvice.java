@@ -1,13 +1,11 @@
 package leblogger.controllers;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 
-//..
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
@@ -17,7 +15,6 @@ public class ExceptionControllerAdvice {
         mav.addObject("errorName", "Database error");
         mav.addObject("errorMessage", "Sorry, we are have a problem with database.\n" +
                 "But we'll fix it in a few minutes.");
-
         return mav;
     }
 

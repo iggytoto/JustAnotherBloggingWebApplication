@@ -65,8 +65,6 @@ $(".pencilClick").click(function () {
     updatePost($(this));
 });
 
-// formpage submit
-// $("form").submit(function(e) {
 
 function validateFields() {
     formNameEntry = document.getElementById("recipient-name");

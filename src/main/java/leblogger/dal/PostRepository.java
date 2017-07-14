@@ -25,14 +25,14 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
 
     @Autowired
     private SessionFactory sessionFactory;
-    @Autowired
-    private Logger logger;
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger("PostRepository.class");
 
     @Transactional(readOnly = false)
     public long create(Post obj) {
         Session s = getSession();
         long result = (Long) s.save(obj);
         s.flush();
+        logger.info("Add new post");
         return result;
     }
 
