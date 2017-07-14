@@ -1,9 +1,12 @@
 package leblogger.controllers;
 
+import leblogger.dto.LongResponse;
 import leblogger.model.Post;
 import leblogger.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,34 +28,34 @@ public class PostController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Long addPost(@RequestParam(value = "name1", required = false) String name1,
-                        @RequestParam(value = "text1", required = false) String text1) {
+    public String addPost(@RequestParam(value = "name1", required = false) String name1,
+                          @RequestParam(value = "text1", required = false) String text1) {
         try {
-            return blogService.addPost(new Post(name1, text1));
+            return String.valueOf(blogService.addPost(new Post(name1, text1)));
         } catch (Exception e) {
-            return Long.valueOf(-1);
+            return String.valueOf(-1);
         }
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public Long deletePost(@PathVariable int id) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public String deletePost(@PathVariable long id) {
         try {
             blogService.deletePost(id);
-            return Long.valueOf(id);
+            return String.valueOf(id);
         } catch (Exception e) {
-            return Long.valueOf(-1);
+            return String.valueOf(-1);
         }
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.POST)
-    public Long updatePost(@PathVariable long id,
-                           @RequestParam(value = "name1") String name1,
-                           @RequestParam(value = "text1") String text1) {
+    public String updatePost(@PathVariable long id,
+                             @RequestParam(value = "name1") String name1,
+                             @RequestParam(value = "text1") String text1) {
         try {
             blogService.updatePost(new Post(id, name1, text1));
-            return id;
+            return String.valueOf(id);
         } catch (Exception e) {
-            return Long.valueOf(-1);
+            return String.valueOf(-1);
         }
 
     }
