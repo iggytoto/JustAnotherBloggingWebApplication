@@ -32,15 +32,16 @@ function deletePost(elm) {
 
 }
 
-// Отправляет запрос на удаление
+// кнопкаУдалить лиснер
 $(".crossClick").click(function () {
 
     deletePost($(this));
 
 });
 
+
 // подготовка формы к редактированию
-$(".pencilClick").click(function () {
+function updatePost(elm) {
 
     var userName = $(this).parent().children(".uname").text();
     var userText = $(this).parent().parent().children(".utext").text();
@@ -55,6 +56,13 @@ $(".pencilClick").click(function () {
 
     $("input[name = 'tpdi']").val(targetParentDivIndex);
 
+}
+
+
+// кнопкаАпдейт лиснер
+$(".pencilClick").click(function () {
+
+    updatePost($(this));
 });
 
 // formpage submit
@@ -103,7 +111,6 @@ $(".btnSubmit").click(function () {
     var userText = $("textarea[name = 'text1']").val();
 
 // если айдишника нет, то ДОБАВИТЬ Пост
-//     if (hiddenId == "") {
     if (!hiddenId) {
 
         // вычисляем ХидденИД (uid) на основе предыдущей записи
@@ -120,7 +127,7 @@ $(".btnSubmit").click(function () {
             // error: console.log,
             success: function (result) {
 
-                if (String(result) == "postAdded") {
+                if (typeof(result) === "string") {
 
                     // $("body > .container > nav").before("<p>111</p>"); // ok
                     $("body > .container").prepend(
@@ -129,21 +136,10 @@ $(".btnSubmit").click(function () {
                                 <span>Name : </span><span class='uname'>" + userName + "</span>\
                                 ,\
                                 <span>Date : </span> 07.07.2017"
-                        + "" +
-                        "\
-                    \
-      \
-                  <button type='button'\
-                          class='btn btn-default btn-md pencilClick'\
-                          style='float: right;'\
-                          data-toggle='modal'\
-                          data-target='.bs-example-modal-sm'\
-                  >\
-                  <span class='glyphicon glyphicon-pencil'\
-                         aria-hidden='true'></span>\
-                  </button>\
-      \
-                  <input type='hidden' class='uid' value='" + hiddenId + "' >\
+                        + ""/* pencilClickUpdate */ +
+                        + ""/* crossClickDelete */ +
+            "\
+                  <input type='hidden' class='uid' value='" + result + "' >\
             \
                         <hr style='clear: right; border: 0; margin: 0;'>\
             \
@@ -153,6 +149,28 @@ $(".btnSubmit").click(function () {
             \
                     </div>\
             ");
+//
+// создаём кнопку апдейт Поста (для свежесозданного элемента)
+                    var pencilClickUpdate = $("" +
+                        "<button type='button' " +
+                        "class='btn btn-default btn-md pencilClick' " +
+                        "style='float: right;' " +
+                        "data-toggle='modal' " +
+                        "data-target='.bs-example-modal-sm' " +
+                        ">" +
+                        "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>" +
+                        "</button> ");
+
+// апендим кнопку в дом созданного постБлока
+                    $("body > .container > .panel:nth-child(1) > .panel-heading > input[type='hidden']").before(pencilClickUpdate);
+// подписываемся после аппенда
+                    pencilClickUpdate.on('click',
+                        function () {
+                            updatePost($(this));
+                        }
+                    );
+//
+
 // создаём кнопку удаления элемента для свежесозданного объекта
                     var crossClickDelete = $("" +
                         "<button type='button' " +
