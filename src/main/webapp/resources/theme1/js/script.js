@@ -19,17 +19,10 @@ function deletePost(elm) {
         url: '/post/' + postId,
         type: 'DELETE',
         success: function (result) {
-
-            if (String(result) == "postDeleted") {
-
-                $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
-            } else {
-
-                alert("Ошибка при удалении поста");
-            }
+            $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
         }
     });
-
+по
 }
 
 // кнопкаУдалить лиснер
@@ -204,18 +197,18 @@ $(".btnSubmit").click(function () {
             },
             method: 'POST',
             success: function (result) {
-                    // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-heading")
-                        .children("span.uname").text(userName);
+                // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
+                $("div.container")
+                    .find("div.panel-default")
+                    .eq(targetParentDivIndex)
+                    .children(".panel-heading")
+                    .children("span.uname").text(userName);
 
-                    // добавляем ТЕКС Поста в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-body").text(userText);
+                // добавляем ТЕКС Поста в дом
+                $("div.container")
+                    .find("div.panel-default")
+                    .eq(targetParentDivIndex)
+                    .children(".panel-body").text(userText);
             }
         });
 
