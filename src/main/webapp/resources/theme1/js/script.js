@@ -12,11 +12,11 @@ $(".addClick").click(function () {
 
 
 // Функция удаления
-function deletePost(self) {
+function deletePost(elm) {
 
-    var postId = self.parent().children(".uid").val();
+    var postId = $(elm).parent().children(".uid").val();
 
-    var targetParentDivIndex = self.parent().parent().index("div.panel-default");
+    var targetParentDivIndex = $(elm).parent().parent().index("div.panel-default");
 
     $.ajax({
         url: '/post/' + postId,
@@ -32,7 +32,7 @@ function deletePost(self) {
 // Отправляет запрос на удаление
 $(".crossClick").click(function () {
 
-    deletePost(this);
+    deletePost($(this));
 
 });
 
