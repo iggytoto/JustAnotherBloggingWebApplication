@@ -68,11 +68,15 @@ public class PostController {
 
     // добавить запись
     @RequestMapping(path = "/post/", method = RequestMethod.POST)
-    public Long addPost(@RequestParam(value = "name1", required = false) String name1,
+    public String addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
 
-        long res = blogService.addPost(new Post(name1, text1));
-        return res;
+//        long res = blogService.addPost(new Post(name1, text1));
+//        return res;
+
+//        blogService.addPost(new Post(name1, text1));
+
+        return "postAdded";
     }
 
     // удалить запись
