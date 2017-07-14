@@ -43,11 +43,11 @@ $(".crossClick").click(function () {
 // подготовка формы к редактированию
 function updatePost(elm) {
 
-    var userName = $(this).parent().children(".uname").text();
-    var userText = $(this).parent().parent().children(".utext").text();
-    var userId = $(this).parent().children(".uid").val(); // TODO: у свежесозданных постов нет ИД. А с пустышкой будет отправляться на добавление
+    var userName = $(elm).parent().children(".uname").text();
+    var userText = $(elm).parent().parent().children(".utext").text();
+    var userId = $(elm).parent().children(".uid").val();
 
-    var targetParentDivIndex = $(this).parent().parent().index("div.panel-default");
+    var targetParentDivIndex = $(elm).parent().parent().index("div.panel-default");
 
 
     $("input[name = 'name1']").val(userName);
@@ -65,8 +65,6 @@ $(".pencilClick").click(function () {
     updatePost($(this));
 });
 
-// formpage submit
-// $("form").submit(function(e) {
 
 function validateFields() {
     formNameEntry = document.getElementById("recipient-name");
@@ -113,10 +111,6 @@ $(".btnSubmit").click(function () {
 // если айдишника нет, то ДОБАВИТЬ Пост
     if (!hiddenId) {
 
-        // вычисляем ХидденИД (uid) на основе предыдущей записи
-        // hiddenId = $( "div.panel-default:gt(0)" ).index();
-        // var hiddenId = $( "div.panel-default:gt(0)" );
-
         $.ajax({
             url: '/post/',
             data: {
@@ -124,10 +118,10 @@ $(".btnSubmit").click(function () {
                 text1: userText
             },
             method: 'POST',
-            // error: console.log,
-            success: function (result) {
 
-                if (typeof(result) === "string") {
+            success: function (postId) {
+
+                if (typeof(postId) === "string") {
 
                     // $("body > .container > nav").before("<p>111</p>"); // ok
                     $("body > .container").prepend(
@@ -137,9 +131,9 @@ $(".btnSubmit").click(function () {
                                 ,\
                                 <span>Date : </span> 07.07.2017"
                         + ""/* pencilClickUpdate */ +
-                        + ""/* crossClickDelete */ +
-            "\
-                  <input type='hidden' class='uid' value='" + result + "' >\
+                        +""/* crossClickDelete */ +
+                        "\
+                              <input type='hidden' class='uid' value='" + postId + "' >\
             \
                         <hr style='clear: right; border: 0; margin: 0;'>\
             \
@@ -198,7 +192,6 @@ $(".btnSubmit").click(function () {
         }); // ajax end
 
 // а если айди есть, то ИЗМЕНИТЬ Пост
-//     } else if (hiddenId != "") {
     } else if (hiddenId) {
 
         var targetParentDivIndex = $("input[name = 'tpdi']").val();
@@ -212,8 +205,6 @@ $(".btnSubmit").click(function () {
             method: 'PUT', // PUT не проходит :(
             success: function (result) {
 
-                console.log(result);
-
                 if (String(result) == "postChanged") {
 
                     // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
@@ -223,14 +214,11 @@ $(".btnSubmit").click(function () {
                         .children(".panel-heading")
                         .children("span.uname").text(userName);
 
-                    // добавляем ТЕКС ПОСТА в дом
+                    // добавляем ТЕКС Поста в дом
                     $("div.container")
                         .find("div.panel-default")
                         .eq(targetParentDivIndex)
                         .children(".panel-body").text(userText);
-
-                    // TODO : нужна пустышка для hiddenId , чтобы не происходило добавления в БД !
-                    // или добавлять ИД на основе предыдущего ИД + 1
 
                 } else {
 
