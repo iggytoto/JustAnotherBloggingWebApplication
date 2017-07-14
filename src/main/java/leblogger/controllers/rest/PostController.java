@@ -57,10 +57,10 @@ public class PostController {
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
-    public String addPost(@RequestParam(value = "name1", required = false) String name1,
+    public Long addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
-        blogService.addPost(new Post(name1, text1));
-        return "redirect:/";
+        long res = blogService.addPost(new Post(name1, text1));
+        return res;
     }
 
     @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
