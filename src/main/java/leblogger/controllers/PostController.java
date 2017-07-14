@@ -1,4 +1,4 @@
-package leblogger.controllers.rest;
+package leblogger.controllers;
 
 import leblogger.model.Post;
 import leblogger.services.BlogService;
@@ -31,29 +31,6 @@ public class PostController {
     @Autowired
     public void setEnv(Environment env) {
         this.env = env;
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView viewPosts(ModelAndView mav) {
-        long count = blogService.getCount();
-        int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
-        posts = blogService.getRange(0,pagesDivider-1);
-        mav.addObject("posts", posts);
-        mav.addObject("pagesCount", count/pagesDivider+(count%pagesDivider>0?1:0));
-        mav.setViewName("home.jsp");
-        return mav;
-    }
-
-    @RequestMapping(value="/{numberPageParam}", method = RequestMethod.GET)
-    public ModelAndView viewNumberPage(ModelAndView mav,@PathVariable String numberPageParam) {
-        int numberPage = Integer.parseInt(numberPageParam);
-        long count = blogService.getCount();
-        int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
-        posts = blogService.getRange((numberPage-1)*pagesDivider, numberPage*pagesDivider-1);
-        mav.addObject("posts", posts);
-        mav.addObject("pagesCount", count/pagesDivider+(count%pagesDivider>0?1:0));
-        mav.setViewName("home.jsp");
-        return mav;
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
