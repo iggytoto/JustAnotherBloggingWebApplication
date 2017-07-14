@@ -112,7 +112,8 @@ $(".btnSubmit").click(function (e) {
                 name1: userName,
                 text1: userText
             },
-            method: 'PUT', // PUT не проходит :(
+
+            method: 'POST',
             success: function (result) {
 
                 console.log(result);
