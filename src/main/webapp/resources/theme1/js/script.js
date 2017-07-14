@@ -17,12 +17,7 @@ $(".crossClick").click(function () {
     var postId = $(this).parent().children(".uid").val();
 
     var targetParentDivIndex = $(this).parent().parent().index("div.panel-default");
-    // var found = $("div.container").find("div.panel-default:nth-child(2)").html(); // ok
-    // var found = $("div.container").find("div.panel-default:nth-child(2)").remove(); // ok !
 
-    // var found = $("div.container").find("div.panel-default:nth-child(1)").index(); // 2 = 1 , 1 = 0 // ok
-
-    // index++;
 
     // console.log(index);
     $.ajax({

@@ -86,7 +86,7 @@
     </c:forEach>
 
 <%--Pagination--%>
-
+<c:if test="${requestScope.pagesCount > 0}">
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>
@@ -94,11 +94,11 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+<%--<c:forEach items="${requestScope.pagesCount}" var="page">--%>
+
+<c:forEach var = "i" begin = "1" end = "${requestScope.pagesCount}">
+            <li><a href="#">${i}</a></li>
+</c:forEach>
             <li>
                 <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -106,7 +106,7 @@
             </li>
         </ul>
     </nav>
-
+</c:if>
 <%--/pagination    --%>
 
 
