@@ -1,4 +1,4 @@
-package leblogger.controllers.rest;
+package leblogger.controllers;
 
 import leblogger.model.Post;
 import leblogger.services.BlogService;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by Iggytoto on 11.07.2017.
  */
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/post/")
 public class PostController {
 
     private Environment env;

@@ -2,6 +2,8 @@ package leblogger.controllers;
 
 import leblogger.model.Post;
 import leblogger.services.BlogService;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +23,16 @@ public class HomeController extends BaseController {
     private BlogService blogService;
 
     @Autowired
+    private Logger logger;
+
+    @Autowired
     public void setBlogService(BlogService blogService) {
         this.blogService = blogService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView viewPosts() {
+        logger.info("GET REQUEST FROM LOGGER");
         return new ModelAndView("redirect:/1");
     }
 

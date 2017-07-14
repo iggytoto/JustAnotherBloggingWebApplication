@@ -1,10 +1,9 @@
 package leblogger.dal;
 
 import leblogger.model.Post;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -25,14 +24,12 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
 
     @Autowired
     private SessionFactory sessionFactory;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger("PostRepository.class");
 
     @Transactional(readOnly = false)
     public long create(Post obj) {
         Session s = getSession();
         long result = (Long) s.save(obj);
         s.flush();
-        logger.info("Add new post");
         return result;
     }
 
