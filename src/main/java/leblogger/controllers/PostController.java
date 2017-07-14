@@ -14,46 +14,47 @@ import java.util.ArrayList;
  * Created by Iggytoto on 11.07.2017.
  */
 @RestController
-@RequestMapping(value = "/")
-public class PostController {
-
-    private Environment env;
+@RequestMapping(value = "/post")
+public class PostController extends BaseController {
 
     private BlogService blogService;
-
-    private ArrayList<Post> posts = null;
 
     @Autowired
     public void setBlogService(BlogService blogService) {
         this.blogService = blogService;
     }
 
-    @Autowired
-    public void setEnv(Environment env) {
-        this.env = env;
-    }
-
-    @RequestMapping(path = "/post", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public Long addPost(@RequestParam(value = "name1", required = false) String name1,
-                          @RequestParam(value = "text1", required = false) String text1) {
-        long res = blogService.addPost(new Post(name1, text1));
-        return res;
+                        @RequestParam(value = "text1", required = false) String text1) {
+        try {
+            return blogService.addPost(new Post(name1, text1));
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
     }
 
-    @RequestMapping(path = "/post/{id}" , method = RequestMethod.DELETE)
-    public String deletePost(@PathVariable int id){
-        blogService.deletePost(id);
-        String res = "Post # " + id + " deleted";
-        return res;
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public Long deletePost(@PathVariable int id) {
+        try {
+            blogService.deletePost(id);
+            return Long.valueOf(id);
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
     }
 
-    @RequestMapping(path = "/post/{id}" , method = RequestMethod.POST)
-    public String updatePost(@PathVariable long id,
-                          @RequestParam(value = "name1", required = false) String name1,
-                          @RequestParam(value = "text1", required = false) String text1){
-        blogService.updatePost(new Post(id,name1,text1));
-        String res = "Post # " + id + " was changed.";
-        return res;
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    public Long updatePost(@PathVariable long id,
+                           @RequestParam(value = "name1") String name1,
+                           @RequestParam(value = "text1") String text1) {
+        try {
+            blogService.updatePost(new Post(id, name1, text1));
+            return id;
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
+
     }
 
 }
