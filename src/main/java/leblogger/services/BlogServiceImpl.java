@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class BlogServiceImpl implements BlogService {
 
     ICrudRepository crudRep;
-
     IDbRepository dbRep;
 
     @Autowired

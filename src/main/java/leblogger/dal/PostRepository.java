@@ -33,6 +33,7 @@ public class PostRepository implements ICrudRepository<Post>, IDbRepository<Post
         Session s = getSession();
         long result = (Long) s.save(obj);
         s.flush();
+        logger.info("Add new post");
         return result;
     }
 
