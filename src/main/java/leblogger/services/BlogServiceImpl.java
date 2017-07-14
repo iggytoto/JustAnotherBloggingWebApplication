@@ -32,8 +32,8 @@ public class BlogServiceImpl implements BlogService {
         return new ArrayList(crudRep.readAll());
     }
 
-    public void addPost(Post post) {
-        crudRep.create(post);
+    public long addPost(Post post) {
+        return crudRep.create(post);
     }
 
     public long getCount() {
