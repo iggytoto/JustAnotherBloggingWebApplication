@@ -4,7 +4,6 @@ $(".addClick").click(function () {
     $("input[name = 'id1']").val("");
     $("input[name = 'name1']").val("");
     $("textarea[name = 'text1']").val("");
-
 });
 
 
@@ -204,18 +203,18 @@ $(".btnSubmit").click(function () {
             },
             method: 'POST',
             success: function (result) {
-                    // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-heading")
-                        .children("span.uname").text(userName);
+                // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
+                $("div.container")
+                    .find("div.panel-default")
+                    .eq(targetParentDivIndex)
+                    .children(".panel-heading")
+                    .children("span.uname").text(userName);
 
-                    // добавляем ТЕКС Поста в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-body").text(userText);
+                // добавляем ТЕКС Поста в дом
+                $("div.container")
+                    .find("div.panel-default")
+                    .eq(targetParentDivIndex)
+                    .children(".panel-body").text(userText);
             }
         });
 
