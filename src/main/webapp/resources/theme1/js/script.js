@@ -202,11 +202,8 @@ $(".btnSubmit").click(function () {
                 name1: userName,
                 text1: userText
             },
-            method: 'PUT', // PUT не проходит :(
+            method: 'POST',
             success: function (result) {
-
-                if (String(result) == "postChanged") {
-
                     // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
                     $("div.container")
                         .find("div.panel-default")
@@ -219,11 +216,6 @@ $(".btnSubmit").click(function () {
                         .find("div.panel-default")
                         .eq(targetParentDivIndex)
                         .children(".panel-body").text(userText);
-
-                } else {
-
-                    alert("Ошибка при изменении поста");
-                }
             }
         });
 

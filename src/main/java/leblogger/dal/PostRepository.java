@@ -1,10 +1,7 @@
 package leblogger.dal;
 
 import leblogger.model.Post;
-import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
