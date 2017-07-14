@@ -149,7 +149,7 @@ $(".btnSubmit").click(function () {
             \
                     </div>\
             ");
-//
+
 // создаём кнопку апдейт Поста (для свежесозданного элемента)
                     var pencilClickUpdate = $("" +
                         "<button type='button' " +
