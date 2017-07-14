@@ -102,49 +102,9 @@ $(".btnSubmit").click(function () {
     var userName = $("input[name = 'name1']").val();
     var userText = $("textarea[name = 'text1']").val();
 
-// если айдишник есть, то ИЗМЕНИТЬ Пост
-    if (hiddenId != "") {
-
-        var targetParentDivIndex = $("input[name = 'tpdi']").val();
-
-        $.ajax({
-            url: '/post/' + hiddenId,   // postId
-            data: {
-                name1: userName,
-                text1: userText
-            },
-            method: 'PUT', // PUT не проходит :(
-            success: function (result) {
-
-                console.log(result);
-
-                if (String(result) == "postChanged") {
-
-                    // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-heading")
-                        .children("span.uname").text(userName);
-
-                    // добавляем ТЕКС ПОСТА в дом
-                    $("div.container")
-                        .find("div.panel-default")
-                        .eq(targetParentDivIndex)
-                        .children(".panel-body").text(userText);
-
-                    // TODO : нужна пустышка для hiddenId , чтобы не происходило добавления в БД !
-                    // или добавлять ИД на основе предыдущего ИД + 1
-
-                } else {
-
-                    alert("Ошибка при изменении поста");
-                }
-            }
-        });
-
-// а если нет айди, то ДОБАВИТЬ Пост
-    } else if (hiddenId == "") {
+// если айдишника нет, то ДОБАВИТЬ Пост
+//     if (hiddenId == "") {
+    if (!hiddenId) {
 
         // вычисляем ХидденИД (uid) на основе предыдущей записи
         // hiddenId = $( "div.panel-default:gt(0)" ).index();
@@ -218,6 +178,48 @@ $(".btnSubmit").click(function () {
 
             }
         }); // ajax end
+
+// а если айди есть, то ИЗМЕНИТЬ Пост
+//     } else if (hiddenId != "") {
+    } else if (hiddenId) {
+
+        var targetParentDivIndex = $("input[name = 'tpdi']").val();
+
+        $.ajax({
+            url: '/post/' + hiddenId,   // postId
+            data: {
+                name1: userName,
+                text1: userText
+            },
+            method: 'PUT', // PUT не проходит :(
+            success: function (result) {
+
+                console.log(result);
+
+                if (String(result) == "postChanged") {
+
+                    // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
+                    $("div.container")
+                        .find("div.panel-default")
+                        .eq(targetParentDivIndex)
+                        .children(".panel-heading")
+                        .children("span.uname").text(userName);
+
+                    // добавляем ТЕКС ПОСТА в дом
+                    $("div.container")
+                        .find("div.panel-default")
+                        .eq(targetParentDivIndex)
+                        .children(".panel-body").text(userText);
+
+                    // TODO : нужна пустышка для hiddenId , чтобы не происходило добавления в БД !
+                    // или добавлять ИД на основе предыдущего ИД + 1
+
+                } else {
+
+                    alert("Ошибка при изменении поста");
+                }
+            }
+        });
 
     }
 
