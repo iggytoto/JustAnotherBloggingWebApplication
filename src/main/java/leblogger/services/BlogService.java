@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Service
 public interface BlogService {
     ArrayList<Post> getAllPosts();
-    void addPost(Post post);
+    long addPost(Post post);
     long getCount();
     ArrayList<Post> getRange(int from,int to);
     void deletePost(long id);

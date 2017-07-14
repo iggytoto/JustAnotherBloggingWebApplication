@@ -40,11 +40,7 @@ public class PostController {
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
 
-        try {
-            posts = blogService.getRange(0, pagesDivider - 1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        posts = blogService.getRange(0, pagesDivider - 1);
 
         mav.addObject("posts", posts);
         mav.addObject("pagesCount", count / pagesDivider + (count % pagesDivider > 0 ? 1 : 0));
@@ -62,11 +58,7 @@ public class PostController {
         int from = (numberPage - 1) * pagesDivider;
         int to = numberPage * pagesDivider - 1;
 
-        try {
-            posts = blogService.getRange(from, to);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        posts = blogService.getRange(from, to);
 
         mav.addObject("posts", posts);
         mav.addObject("pagesCount", count / pagesDivider + (count % pagesDivider > 0 ? 1 : 0));
@@ -76,24 +68,17 @@ public class PostController {
 
     // добавить запись
     @RequestMapping(path = "/post/", method = RequestMethod.POST)
-    public String addPost(@RequestParam(value = "name1", required = false) String name1,
+    public Long addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
-
-
-        blogService.addPost(new Post(name1, text1));
-
-        return "postAdded";
+        long res = blogService.addPost(new Post(name1, text1));
+        return res;
     }
 
     // удалить запись
     @RequestMapping(path = "/post/{id}", method = RequestMethod.DELETE)
     public String deletePost(@PathVariable int id) {
 
-        try {
-            blogService.deletePost(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        blogService.deletePost(id);
 
         String res = "Post # " + id + " deleted";
         return res;
@@ -105,11 +90,7 @@ public class PostController {
                              @RequestParam(value = "name1", required = false) String name1,
                              @RequestParam(value = "text1", required = false) String text1) {
 
-        try {
-            blogService.updatePost(new Post(id, name1, text1));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        blogService.updatePost(new Post(id, name1, text1));
 
         return "postChanged";
     }
