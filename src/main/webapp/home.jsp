@@ -60,7 +60,7 @@
                 <button type="button"
                         class="btn btn-default btn-md crossClick"
                         style="float: right;"
-                        >
+                >
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
 
@@ -73,7 +73,7 @@
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
 
-                <input type="hidden" class="uid" value="${pst.id}" >
+                <input type="hidden" class="uid" value="${pst.id}">
 
                 <hr style="clear: right; border: 0; margin: 0;">
 
@@ -85,29 +85,28 @@
         <%--</p>--%>
     </c:forEach>
 
-<%--Pagination--%>
-<c:if test="${requestScope.pagesCount > 0}">
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-<%--<c:forEach items="${requestScope.pagesCount}" var="page">--%>
+    <%--Pagination--%>
+    <c:if test="${requestScope.pagesCount > 0}">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
 
-<c:forEach var = "i" begin = "1" end = "${requestScope.pagesCount}">
-            <li><a href="#">${i}</a></li>
-</c:forEach>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</c:if>
-<%--/pagination    --%>
+                <c:forEach var="i" begin="1" end="${requestScope.pagesCount}">
+                    <li><a href="#">${i}</a></li>
+                </c:forEach>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </c:if>
+    <%--/pagination    --%>
 
 
 </div>
@@ -139,7 +138,9 @@
                     <input type="hidden" name="id1" value="">
                     <input type="hidden" name="tpdi" value="">
 
-                    <button type="button" class="btn btn-primary btnSubmit" data-dismiss="modal" style="margin-left: 150px;">Send message</button>
+                    <button type="button" class="btn btn-primary btnSubmit" data-dismiss="modal"
+                            style="margin-left: 150px;">Send message
+                    </button>
 
                 </form>
 
