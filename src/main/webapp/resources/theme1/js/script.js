@@ -11,12 +11,12 @@ $(".addClick").click(function () {
 });
 
 
-// Отправляет запрос на удаление
-$(".crossClick").click(function () {
+// Функция удаления
+function deletePost(self) {
 
-    var postId = $(this).parent().children(".uid").val();
+    var postId = self.parent().children(".uid").val();
 
-    var targetParentDivIndex = $(this).parent().parent().index("div.panel-default");
+    var targetParentDivIndex = self.parent().parent().index("div.panel-default");
 
     $.ajax({
         url: '/post/' + postId,
@@ -26,6 +26,13 @@ $(".crossClick").click(function () {
             $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
         }
     });
+
+}
+
+// Отправляет запрос на удаление
+$(".crossClick").click(function () {
+
+    deletePost(this);
 
 });
 
@@ -61,7 +68,7 @@ function validateFields() {
         formNameEntry.setAttribute("title", "Please enter your not empty name.");
         nameValid = true;
     }
-    else{
+    else {
         formNameEntry.style.border = "none"
         formNameEntry.removeAttribute("title");
         nameValid = false;
@@ -147,35 +154,33 @@ $(".btnSubmit").click(function (e) {
                 text1: userText
             },
             method: 'POST',
-            error: console.log,
+            // error: console.log,
             success: function (result) {
 
                 if (String(result) == "postAdded") {
+
                     // $("body > .container > nav").before("<p>111</p>"); // ok
                     $("body > .container").prepend(
                         "<div class='panel panel-default'>\
                             <div class='panel-heading'>\
                                 <span>Name : </span><span class='uname'>" + userName + "</span>\
                                 ,\
-                                <span>Date : </span> 07.07.2017\
-                           <button type='button'\
-                                   class='btn btn-default btn-md crossClick'\
-                                   style='float: right;'\
-                            >\
-                              <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
-                          </button>\
-            \
-                        <button type='button'\
-                                class='btn btn-default btn-md pencilClick'\
-                                style='float: right;'\
-                                data-toggle='modal'\
-                                data-target='.bs-example-modal-sm'\
-                        >\
-                        <span class='glyphicon glyphicon-pencil'\
-                               aria-hidden='true'></span>\
-                        </button>\
-            \
-                        <input type='hidden' class='uid' value='" + hiddenId + "' >\
+                                <span>Date : </span> 07.07.2017"
+                        + "" +
+                        "\
+                    \
+      \
+                  <button type='button'\
+                          class='btn btn-default btn-md pencilClick'\
+                          style='float: right;'\
+                          data-toggle='modal'\
+                          data-target='.bs-example-modal-sm'\
+                  >\
+                  <span class='glyphicon glyphicon-pencil'\
+                         aria-hidden='true'></span>\
+                  </button>\
+      \
+                  <input type='hidden' class='uid' value='" + hiddenId + "' >\
             \
                         <hr style='clear: right; border: 0; margin: 0;'>\
             \
@@ -185,6 +190,23 @@ $(".btnSubmit").click(function (e) {
             \
                     </div>\
             ");
+// кнопка акробат
+                    var crossClickDelete = $("" +
+                        "<button type='button'" +
+                        "class='btn btn-default btn-md crossClick'" +
+                        "style='float: right;'>" +
+                        "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>" +
+                        "</button> ");
+
+// апендимся
+                    $("body > .container > .panel:nth-child(1) > .panel-heading > .pencilClick").before(crossClickDelete);
+
+// подписываемся после аппенда
+                    crossClickDelete.on('click',
+                        function () {
+                            deletePost(this); // TODO : err
+                        }
+                    );
 
                 } else {
 

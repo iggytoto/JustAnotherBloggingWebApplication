@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  * Created by Iggytoto on 11.07.2017.
@@ -37,6 +36,7 @@ public class PostController {
     // забрать 10 записей
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView viewPosts(ModelAndView mav) {
+
         long count = blogService.getCount();
         int pagesDivider = Integer.parseInt(env.getRequiredProperty("pagesDivider"));
 
@@ -69,7 +69,7 @@ public class PostController {
     // добавить запись
     @RequestMapping(path = "/post/", method = RequestMethod.POST)
     public Long addPost(@RequestParam(value = "name1", required = false) String name1,
-                        @RequestParam(value = "text1", required = false) String text1) {
+                          @RequestParam(value = "text1", required = false) String text1) {
 
         long res = blogService.addPost(new Post(name1, text1));
         return res;
@@ -86,7 +86,7 @@ public class PostController {
     }
 
     // изменить запись
-    @RequestMapping(path = "/post/{id}", method = RequestMethod.PUT) // !
+    @RequestMapping(path = "/post/{id}", method = RequestMethod.POST) // !
     public String updatePost(@PathVariable long id,
                              @RequestParam(value = "name1", required = false) String name1,
                              @RequestParam(value = "text1", required = false) String text1) {
