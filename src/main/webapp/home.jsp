@@ -49,7 +49,7 @@
 <div class="container" style="width: 700px;">
 
     <c:forEach items="${requestScope.posts}" var="pst">
-        <p>
+
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -82,31 +82,30 @@
             <div class="panel-body utext"><c:out value="${pst.text}"></c:out></div>
 
         </div>
-        </p>
+
     </c:forEach>
 
     <%--Pagination--%>
+    <c:if test="${requestScope.pagesCount > 0}">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
 
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
+                <c:forEach var="i" begin="1" end="${requestScope.pagesCount}">
+                    <li><a href="#">${i}</a></li>
+                </c:forEach>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </c:if>
     <%--/pagination    --%>
 
 
@@ -128,20 +127,19 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               name="name1">
+                        <input type="text" class="form-control" id="recipient-name" name="name1">
                     </div>
 
                     <div class="form-group">
                         <label for="message-text" class="control-label">Text:</label>
-                        <textarea class="form-control" id="message-text"
-                                  name="text1"></textarea>
+                        <textarea class="form-control" id="message-text" name="text1"></textarea>
                     </div>
 
                     <input type="hidden" name="id1" value="">
+                    <input type="hidden" name="tpdi" value="">
 
                     <button id="input-form-submit" type="button" class="btn btn-primary btnSubmit"
-                            style="margin-left: 150px;">Send message
+                            data-dismiss="modal" style="margin-left: 150px;">Send message
                     </button>
 
                 </form>
@@ -157,6 +155,5 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/theme1/js/script.js" />"></script>
-
 </body>
 </html>
