@@ -105,7 +105,7 @@ $(".btnSubmit").click(function (e) {
                 name1: userName,
                 text1: userText
             },
-            method: 'POST', // PUT не проходит :(
+            method: 'PUT', // PUT не проходит :(
             success: function (result) {
 
                 console.log(result);
@@ -140,14 +140,14 @@ $(".btnSubmit").click(function (e) {
         // hiddenId = $( "div.panel-default:gt(0)" ).index();
         // var hiddenId = $( "div.panel-default:gt(0)" );
 
-
         $.ajax({
             url: '/post/',
             data: {
                 name1: userName,
                 text1: userText
             },
-            type: 'POST',
+            method: 'POST',
+            error: console.log,
             success: function (result) {
 
                 if (String(result) == "postAdded") {

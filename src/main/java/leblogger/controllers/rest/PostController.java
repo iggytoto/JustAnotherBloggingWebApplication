@@ -70,6 +70,7 @@ public class PostController {
     @RequestMapping(path = "/post/", method = RequestMethod.POST)
     public Long addPost(@RequestParam(value = "name1", required = false) String name1,
                           @RequestParam(value = "text1", required = false) String text1) {
+
         long res = blogService.addPost(new Post(name1, text1));
         return res;
     }
