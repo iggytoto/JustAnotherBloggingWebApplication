@@ -1,6 +1,3 @@
-/**
- * Created by satyam on 12.07.2017.
- */
 // при старте окна на добавление записи - убираем postID и другие данные из полей
 $(".addClick").click(function () {
 
@@ -23,7 +20,13 @@ function deletePost(elm) {
         type: 'DELETE',
         success: function (result) {
 
-            $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
+            if (String(result) == "postDeleted") {
+
+                $("div.container").find("div.panel-default").eq(targetParentDivIndex).remove();
+            } else {
+
+                alert("Ошибка при удалении поста");
+            }
         }
     });
 
@@ -64,23 +67,23 @@ function validateFields() {
     var textValid = false;
 
     if (formNameEntry.value == "") {
-        formNameEntry.style.border = "thin solid #FF0000"
+        formNameEntry.style.border = "thin solid #FF0000";
         formNameEntry.setAttribute("title", "Please enter your not empty name.");
         nameValid = true;
     }
     else {
-        formNameEntry.style.border = "none"
+        formNameEntry.style.border = "none";
         formNameEntry.removeAttribute("title");
         nameValid = false;
     }
 
     if (formTextEntry.value == "") {
-        formTextEntry.style.border = "thin solid #FF0000"
-        formTextEntry.setAttribute("title", "Please enter your not empty name.")
+        formTextEntry.style.border = "thin solid #FF0000";
+        formTextEntry.setAttribute("title", "Please enter your not empty name.");
         textValid = true;
     }
     else {
-        formTextEntry.style.border = "none"
+        formTextEntry.style.border = "none";
         formTextEntry.removeAttribute("title");
         textValid = false;
     }
@@ -89,7 +92,7 @@ function validateFields() {
 
 
 // Отправка формы
-$(".btnSubmit").click(function (e) {
+$(".btnSubmit").click(function () {
     if (!validateFields()) {
         return;
     }
@@ -104,10 +107,8 @@ $(".btnSubmit").click(function (e) {
 
         var targetParentDivIndex = $("input[name = 'tpdi']").val();
 
-        var postId = hiddenId;
-
         $.ajax({
-            url: '/post/' + postId,
+            url: '/post/' + hiddenId,   // postId
             data: {
                 name1: userName,
                 text1: userText
@@ -119,12 +120,14 @@ $(".btnSubmit").click(function (e) {
 
                 if (String(result) == "postChanged") {
 
+                    // добавляем ИМЯ ПОЛЬЗОВАТЕЛЯ в дом
                     $("div.container")
                         .find("div.panel-default")
                         .eq(targetParentDivIndex)
                         .children(".panel-heading")
                         .children("span.uname").text(userName);
 
+                    // добавляем ТЕКС ПОСТА в дом
                     $("div.container")
                         .find("div.panel-default")
                         .eq(targetParentDivIndex)
@@ -190,10 +193,10 @@ $(".btnSubmit").click(function (e) {
             \
                     </div>\
             ");
-// кнопка акробат
+// создаём кнопку удаления элемента для свежесозданного объекта
                     var crossClickDelete = $("" +
-                        "<button type='button'" +
-                        "class='btn btn-default btn-md crossClick'" +
+                        "<button type='button' " +
+                        "class='btn btn-default btn-md crossClick' " +
                         "style='float: right;'>" +
                         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>" +
                         "</button> ");
@@ -204,7 +207,7 @@ $(".btnSubmit").click(function (e) {
 // подписываемся после аппенда
                     crossClickDelete.on('click',
                         function () {
-                            deletePost(this); // TODO : err
+                            deletePost($(this));
                         }
                     );
 
@@ -214,13 +217,7 @@ $(".btnSubmit").click(function (e) {
                 }
 
             }
-        });
-
-        /// объектов на 1 меньше ???
-        // var hiddenId = $( "div.panel-default" );
-        // var hiddenId = $( "div.container > div" ); // wtf??
-        // var hiddenId = $( "div" ); // wtf??
-        // console.log(hiddenId);
+        }); // ajax end
 
     }
 

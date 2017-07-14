@@ -85,8 +85,7 @@ public class PostController {
 
         blogService.deletePost(id);
 
-        String res = "Post # " + id + " deleted";
-        return res;
+        return "postDeleted";
     }
 
     // изменить запись
