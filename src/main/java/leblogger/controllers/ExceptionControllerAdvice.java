@@ -1,4 +1,4 @@
-package leblogger.controllers.rest;
+package leblogger.controllers;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
